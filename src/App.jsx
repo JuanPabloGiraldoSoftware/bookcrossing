@@ -1,9 +1,12 @@
-import { React, Fragment} from 'react';
+import { React} from 'react';
+import { MainTitleContainer } from './components/MainTitleContainer';
+import { AddingBar } from './components/AddingBar'
+import "./components/styles/Containers.css"
 
 export function App(){
-    return (<Fragment>
-        <h1>Bookcrossing</h1>
-        <div>Bookcrossing component</div>
-    </Fragment>
+    return (<div className = "main_container">
+        <MainTitleContainer/>
+        <AddingBar />
+    </div>
     )
 }
