@@ -4,7 +4,7 @@ import { AddingBar } from './components/AddingBar'
 import "./components/styles/Containers.css"
 
 export function App(){
-    return (<div className = "main_container">
+    return (<div className = "bordering">
         <MainTitleContainer/>
         <AddingBar />
     </div>

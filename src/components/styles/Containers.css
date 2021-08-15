@@ -1,5 +1,9 @@
 /*.main_container{}*/
 
+/* .bordering{
+    border: 1px solid #000000;
+} */
+
 .title_container{
     display: flex;
     width: 100%;
@@ -17,4 +21,16 @@
     justify-content: center;
     align-content: center;
     color: blue;
+}
+
+.books_container{
+    display: flex;
+    width: 100%;
+}
+
+.singlebook_container{
+    margin-left: 50px;
+    background-image: url("../../images/book.jpg");
+    justify-content: center;
+    align-content: center;
 }
