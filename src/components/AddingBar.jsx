@@ -14,13 +14,10 @@ export function AddingBar() {
                 Language: document.getElementById("Language").value
             }
         )
-        setBlist((prev)=>{
-            return [... prev, {id, blist, completed: false}]
-        });
+        setBlist((prev)=>{return [...prev,{id, blist, completed: false}]});
         id+=1;
     }
-    return (
-        <Fragment>
+    return (<Fragment>
         <div className="body_container">
             <input id="bookTitleField" type="text" placeholder="Título"></input>
             <input id="bookAuthorField" type="text" placeholder="Autor"></input>
