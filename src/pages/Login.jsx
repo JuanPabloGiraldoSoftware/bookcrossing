@@ -39,6 +39,9 @@ export function Login(){
         console.log(error);
         });
     }
+    const handleSingUp = () => {
+        history.push("/signup")
+    }
 
     return (<div className = "bordering">
         <div className="login_container">
@@ -46,6 +49,7 @@ export function Login(){
             <input id="userField" type="text" placeholder="Usuario"></input>
             <input id="passwordField" type="password" placeholder="Contraseña"></input>
             <button onClick={userRequest}>Login</button>
+            <button onClick={handleSingUp}>Sign up</button>
         </div>
 
     </div>
