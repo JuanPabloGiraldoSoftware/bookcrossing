@@ -15,7 +15,6 @@ export function Login(){
         "username": usr,
         "password": pass
         });
-        console.log(process.env);
         var config = {
         method: 'post',
         url: 'https://bookcrossing-server.herokuapp.com/login',
@@ -28,7 +27,10 @@ export function Login(){
         axios(config)
         .then(function (response) {
             if(response.data){
+                console.log("Login Succed!");
                 history.push("/addbooks");
+            }else{
+                console.log("Unexistent User!");
             }
         })
         .catch(function (error) {
