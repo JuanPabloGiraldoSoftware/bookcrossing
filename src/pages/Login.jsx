@@ -1,6 +1,5 @@
 import { React} from 'react';
 import { useHistory } from "react-router-dom";
-import { MainTitleContainer } from '../components/MainTitleContainer';
 import "../components/styles/Containers.css"
 
 export function Login(){
@@ -42,7 +41,6 @@ export function Login(){
     }
 
     return (<div className = "bordering">
-        <MainTitleContainer/>
         <div className="login_container">
             <h2>Login</h2>
             <input id="userField" type="text" placeholder="Usuario"></input>

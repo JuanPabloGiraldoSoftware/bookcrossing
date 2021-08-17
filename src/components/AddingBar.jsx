@@ -11,7 +11,9 @@ export function AddingBar() {
             {
                 Title: document.getElementById("bookTitleField").value,
                 Author: document.getElementById("bookAuthorField").value,
-                Language: document.getElementById("Language").value
+                Language: document.getElementById("bookLanguage").value,
+                Gender: document.getElementById("bookGender").value,
+                Year: document.getElementById("bookYear").value
             }
         )
         setBlist((prev)=>{return [...prev,{id, blist, completed: false}]});
@@ -21,7 +23,9 @@ export function AddingBar() {
         <div className="body_container">
             <input id="bookTitleField" type="text" placeholder="Título"></input>
             <input id="bookAuthorField" type="text" placeholder="Autor"></input>
-            <input id="Language" type="text" placeholder="Idioma"></input>
+            <input id="bookLanguage" type="text" placeholder="Idioma"></input>
+            <input id="bookGender" type="text" placeholder="Género Literario"></input>
+            <input id="bookYear" type="text" placeholder="Año"></input>
             <button onClick={addBook}>Add</button>
         </div>
         <BookInventory booksList={blist}/>

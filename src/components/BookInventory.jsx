@@ -13,6 +13,8 @@ export function BookInventory({booksList}) {
                 <ul>
                     <li>{book.Author}</li>
                     <li>{book.Language}</li>
+                    <li>{book.Gender}</li>
+                    <li>{book.Year}</li>
                 </ul>
                 </div>)
         }
