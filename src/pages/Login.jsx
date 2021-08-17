@@ -13,7 +13,7 @@ const userRequest = () => {
 
     var config = {
     method: 'post',
-    url: 'https://bookcrossing-server.herokuapp.com//login',
+    url: 'https://bookcrossing-server.herokuapp.com/login',
     headers: { 
         'Content-Type': 'application/json'
     },
