@@ -3,45 +3,32 @@ import "./styles/Containers.css"
 
 export function BookInventory({booksList}) {
     
+    const userRequest = () => {
+        var axios = require('axios');
+        var data = JSON.stringify({
+        "username": "juan",
+        "password": "pablo"
+        });
+
+        var config = {
+        method: 'post',
+        url: 'https://bookcrossing-server.herokuapp.com/login',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+
+        axios(config)
+        .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
     const verifyContent = (book)=>{
-        const https = require('https')
-
-        const data = new TextEncoder().encode(
-        JSON.stringify({
-            username: 'juan',
-            password: "name"
-        })
-        )
-
-        const options = {
-        hostname: 'bookcrossing-server.herokuapp.com',
-        port: 443,
-        path: '/login',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': "GET, PUT, POST",
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-            'Content-Length': data.length
-        }
-        }
-
-        const req = https.request(options, res => {
-        console.log(`statusCode: ${res.statusCode}`)
-
-        res.on('data', d => {
-            console.log(d)
-            process.stdout.write(d)
-        })
-        })
-
-        req.on('error', error => {
-        console.error(error)
-        })
-
-        req.write(data)
-        req.end()
+        userRequest();
         if(!book.Title || !book.Author || !book.Language){
             return
         }else{
