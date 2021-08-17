@@ -18,7 +18,7 @@ export function Login(){
         console.log(process.env);
         var config = {
         method: 'post',
-        url: 'http://localhost:4000/login',
+        url: 'https://bookcrossing-server.herokuapp.com/login',
         headers: { 
             'Content-Type': 'application/json'
         },
