@@ -1,0 +1,7 @@
+.loginBtn{
+    width: 10%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

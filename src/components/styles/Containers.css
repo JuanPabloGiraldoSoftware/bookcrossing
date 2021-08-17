@@ -23,6 +23,14 @@
     color: blue;
 }
 
+.login_container{
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+    align-content: center;
+    color: blue;
+}
+
 .books_container{
     display: flex;
     width: 100%;
