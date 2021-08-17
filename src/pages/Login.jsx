@@ -1,35 +1,41 @@
 import { React} from 'react';
+import { useHistory } from "react-router-dom";
 import { MainTitleContainer } from '../components/MainTitleContainer';
 import "../components/styles/Containers.css"
 
-const userRequest = () => {
-    const usr = document.getElementById('userField').value;
-    const pass = document.getElementById('passwordField').value;
-    var axios = require('axios');
-    var data = JSON.stringify({
-    "username": usr,
-    "password": pass
-    });
-    console.log(process.env);
-    var config = {
-    method: 'post',
-    url: 'https://bookcrossing-server.herokuapp.com/login',
-    headers: { 
-        'Content-Type': 'application/json'
-    },
-    data : data
-    };
-
-    axios(config)
-    .then(function (response) {
-    console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-    console.log(error);
-    });
-}
-
 export function Login(){
+
+    let history = useHistory();
+
+    const userRequest = () => {
+        const usr = document.getElementById('userField').value;
+        const pass = document.getElementById('passwordField').value;
+        var axios = require('axios');
+        var data = JSON.stringify({
+        "username": usr,
+        "password": pass
+        });
+        console.log(process.env);
+        var config = {
+        method: 'post',
+        url: 'http://localhost:4000/login',
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+    
+        axios(config)
+        .then(function (response) {
+            if(response.data){
+                history.push("/addbooks");
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+
     return (<div className = "bordering">
         <MainTitleContainer/>
         <div className="login_container">
