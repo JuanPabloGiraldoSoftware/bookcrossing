@@ -10,7 +10,7 @@ const userRequest = () => {
     "username": usr,
     "password": pass
     });
-
+    console.log(process.env);
     var config = {
     method: 'post',
     url: process.env.BACKEND_URL,
