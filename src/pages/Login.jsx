@@ -15,9 +15,11 @@ export function Login(){
         "username": usr,
         "password": pass
         });
+        var baseUrl = process.env.NODE_ENV? 'https://bookcrossing-server.herokuapp.com/login' : 'https://localhost:4000/login';
+        console.log(baseUrl);
         var config = {
         method: 'post',
-        url: 'https://bookcrossing-server.herokuapp.com/login',
+        url: baseUrl,
         headers: { 
             'Content-Type': 'application/json'
         },
