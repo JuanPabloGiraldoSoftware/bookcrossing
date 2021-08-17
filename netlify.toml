@@ -1,2 +1,0 @@
-[context.deploy-preview.environment]
-  BACKEND_URL = "https://bookcrossing-server.herokuapp.com/login"
