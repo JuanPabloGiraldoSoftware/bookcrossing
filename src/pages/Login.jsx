@@ -13,7 +13,7 @@ const userRequest = () => {
 
     var config = {
     method: 'post',
-    url: BACKEND_URL || 'http://localhost:4000/login',
+    url: process.env.BACKEND_URL || 'http://localhost:4000/login',
     headers: { 
         'Content-Type': 'application/json'
     },
