@@ -6,6 +6,12 @@ import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
 import "./components/styles/Containers.css"
 
+var currentUSR="none"
+
+export const getCurrentUsr=()=>{
+    return currentUSR;
+}
+
 const useStyles = makeStyles((theme)=>({
     modal: {
         position: 'absolute',
@@ -81,7 +87,8 @@ export function App(){
             if(response.data){
                 console.log("Login Succed!");
                 setModal("SuccedL")
-                setSession(`Welcome again, ${usr}!`);
+                setSession(usr);
+                currentUSR=usr;
                 document.getElementById("loginButton").style.visibility = "hidden"
                 document.getElementById("signupButton").style.visibility = "hidden"
                 document.getElementById("logoutButton").style.visibility = "visible"
@@ -210,7 +217,10 @@ export function App(){
     return (<div className = "bordering">
     <div className="title_container">
             <h1>Bookcrossing</h1>
-            <div className="session_container"><h4>{currentSession}</h4></div>
+            <div className="session_container">
+                {currentSession!==defaultSessionText?<h4>Welcome,</h4>:null}
+                <h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
+            </div>
     </div>
     <Modal
         open={currentModal==='Signup'}
