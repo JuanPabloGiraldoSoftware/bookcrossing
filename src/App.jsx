@@ -36,10 +36,21 @@ export function App(){
         setModal('Signup')
     }
 
+    const openModalSignupSucced= ()=>{
+        setModal('Succed')
+    }
+
     const openModalLogin= ()=>{
         setModal('Login')
     }
 
+    const openModalLoginSucced= ()=>{
+        setModal('SuccedL')
+    }
+
+    const openModalLoginFailed= ()=>{
+        setModal('FailedL')
+    }
     const closeAnyModal=()=>{
         setModal('none')
     }
@@ -69,13 +80,14 @@ export function App(){
         .then(function (response) {
             if(response.data){
                 console.log("Login Succed!");
+                setModal("SuccedL")
                 setSession(`Welcome again, ${usr}!`);
-                setModal("none");
                 document.getElementById("loginButton").style.visibility = "hidden"
                 document.getElementById("signupButton").style.visibility = "hidden"
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
             }else{
+                setModal("FailedL")
                 console.log("Unexistent User!");
             }
         })
@@ -108,7 +120,10 @@ export function App(){
         };
         axios(config)
         .then(function (response) {
-            response? history.push("/login"):console.log("signup error!")
+            if(response){
+                closeAnyModal();
+                setModal("Succed")
+            }
         })
         .catch(function (error) {
         console.log(error);
@@ -130,7 +145,7 @@ export function App(){
            </div>
            <TextField id="userFieldS" label="Usuario" className={styles.textField}/>
            <br/>
-           <TextField id="passwordFieldS" label="Contraseña" className={styles.textField}/>
+           <TextField id="passwordFieldS" label="Contraseña" className={styles.textField} type="password"/>
            <br/>
            <TextField id="mailField" label="Correo" className={styles.textField}/>
            <br/>
@@ -142,6 +157,37 @@ export function App(){
            </div>
         </div>
     )
+    const modalSuccessSignup = (
+        <div className={styles.modal}>
+           <div align='center'>
+               <h2>Signup Success!</h2>
+           </div>
+           <div align='center'>
+           <Button onClick={()=>closeAnyModal()}>Cerrar</Button>
+           </div>
+        </div>
+    )
+    const modalSuccessLogin = (
+        <div className={styles.modal}>
+           <div align='center'>
+               <h2>Login Success!</h2>
+           </div>
+           <div align='center'>
+           <Button onClick={()=>closeAnyModal()}>Cerrar</Button>
+           </div>
+        </div>
+    )
+
+    const modalFailedLogin = (
+        <div className={styles.modal}>
+           <div align='center'>
+               <h2>Unexistent User!</h2>
+           </div>
+           <div align='center'>
+           <Button onClick={()=>closeAnyModal()}>Cerrar</Button>
+           </div>
+        </div>
+    )
        const modalLogin = (
            
         <div className={styles.modal}>
@@ -150,7 +196,7 @@ export function App(){
         </div>
         <TextField id="userFieldL" label="Usuario" className={styles.textField}/>
         <br/>
-        <TextField id="passwordFieldL" label="Contraseña" className={styles.textField}/>
+        <TextField id="passwordFieldL" label="Contraseña" className={styles.textField} type="password"/>
         <br/> <br/>
         <div align='right'>
         <Button color="primary" onClick={userRequest}>Autenticar</Button>
@@ -172,9 +218,24 @@ export function App(){
         {modalSingup}
         </Modal>
         <Modal
+        open={currentModal==='Succed'}
+        onClose={openModalSignupSucced}>
+        {modalSuccessSignup}
+        </Modal>
+        <Modal
         open={currentModal==='Login'}
         onClose={openModalLogin}>
         {modalLogin}
+        </Modal>
+        <Modal
+        open={currentModal==='SuccedL'}
+        onClose={openModalLoginSucced}>
+        {modalSuccessLogin}
+        </Modal>
+        <Modal
+        open={currentModal==='FailedL'}
+        onClose={openModalLoginFailed}>
+        {modalFailedLogin}
         </Modal>
     <div>
         <Button id="logoutButton" className={styles.button} onClick={()=>logout()}>Logout</Button>
