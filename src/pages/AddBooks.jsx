@@ -2,7 +2,7 @@ import { React} from 'react';
 import { AddingBar } from '../components/AddingBar'
 import "../components/styles/Containers.css"
 
-export function AddBooks(){
+export function AddBooks(props){
     return (<div className = "bordering">
         <AddingBar />
     </div>

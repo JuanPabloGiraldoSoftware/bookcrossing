@@ -11,10 +11,11 @@ export function BookInventory({booksList}) {
                <div className="col-3 singlebook_container">
                 <h2>{book.Title}</h2>
                 <ul>
-                    <li>{book.Author}</li>
-                    <li>{book.Language}</li>
-                    <li>{book.Gender}</li>
-                    <li>{book.Year}</li>
+                    <li><b>Autor:</b> {book.Author}</li>
+                    <li><b>Idioma:</b> {book.Language}</li>
+                    <li><b>Género:</b> {book.Gender}</li>
+                    <li><b>Año:</b> {book.Year}</li>
+                    <li><b>Usuario:</b> {book.Owner}</li>
                 </ul>
                 </div>)
         }

@@ -15,9 +15,8 @@
 }
 
 .session_container{
-    display: flex;
     justify-content: center;
-    margin-left: 100px;
+    margin-left: 50%;
     background-color: blue;
     color: yellow;
 }
