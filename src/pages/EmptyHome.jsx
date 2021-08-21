@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LoginSucced() {
+export function EmptyHome() {
     return (
         <div>
             
