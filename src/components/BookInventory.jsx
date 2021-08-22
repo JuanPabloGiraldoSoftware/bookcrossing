@@ -15,7 +15,7 @@ export function BookInventory({booksList}) {
                     <li><b>Idioma:</b> {book.language}</li>
                     <li><b>Género:</b> {book.gender}</li>
                     <li><b>Año:</b> {book.year}</li>
-                    <li><b>Usuario:</b> {book.owner}</li>
+                    <li><b>Usuario:</b> {book.owner?book.owner:book.userName}</li>
                 </ul>
                 </div>)
         }
