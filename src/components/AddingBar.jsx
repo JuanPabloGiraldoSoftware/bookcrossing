@@ -19,15 +19,50 @@ export function AddingBar() {
         )
         setBlist((prev)=>{return [...prev,{id, blist, completed: false}]});
         id+=1;
-        bookAddingRequest();
+        getUserId();
     }
 
-    const bookAddingRequest = () => {
+    const getUserId = () =>{
+        const username = getCurrentUsr();
+        var axios = require('axios');
+        var data = JSON.stringify({
+        "username": username,
+        });
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://bookcrossing-server.herokuapp.com/getUserId' ;
+        console.log(baseUrl);
+        var config = {
+        method: 'post',
+        url: baseUrl,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+
+        axios(config)
+        .then(function (response) {
+            if(response.data){
+                bookAddingRequest(response.data.id)
+                console.log(response.data.id)
+            }else{
+                console.log("Error!");
+                console.log(response.data)
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+
+    }
+
+    const bookAddingRequest = (uId) => {
         const title = JSON.stringify(document.getElementById("bookTitleField").value);
         const author = JSON.stringify(document.getElementById("bookAuthorField").value);
         const language = JSON.stringify(document.getElementById("bookLanguage").value);
         const gender = JSON.stringify(document.getElementById("bookGender").value);
         const year = JSON.stringify(document.getElementById("bookYear").value);
+        const ownerId = JSON.stringify(uId);
         const owner = JSON.stringify(getCurrentUsr());
         var axios = require('axios');
         var data = JSON.stringify({
@@ -36,7 +71,8 @@ export function AddingBar() {
         "language": language,
         "gender": gender,
         "year": year,
-        "owner": owner
+        "owner": owner,
+        "ownerId": ownerId
         });
         console.log(process.env.NODE_ENV);
         var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://bookcrossing-server.herokuapp.com/addingbooks' ;
@@ -64,7 +100,6 @@ export function AddingBar() {
         });
         
     }
-
     return (<Fragment>
         <div className="body_container">
             <input id="bookTitleField" type="text" placeholder="Título"></input>
