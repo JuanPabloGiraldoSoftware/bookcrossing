@@ -93,6 +93,7 @@ export function App(){
                 document.getElementById("signupButton").style.visibility = "hidden"
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
+                document.getElementById("homeSection").style.visibility = "visible"
             }else{
                 setModal("FailedL")
                 console.log("Unexistent User!");
@@ -143,6 +144,7 @@ export function App(){
         document.getElementById("signupButton").style.visibility = "visible"
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
+        document.getElementById("homeSection").style.visibility = "hidden"
     }
 
     const modalSingup = (
@@ -213,6 +215,8 @@ export function App(){
       useEffect(()=>{
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
+        document.getElementById("homeSection").style.visibility = "hidden"
+        document.getElementById("blank").style.visibility = "hidden"
     }, []);
     return (<div className = "bordering">
     <div className="title_container">
@@ -253,9 +257,11 @@ export function App(){
         <Router>
             {currentSession===defaultSessionText? <Redirect to={"/"}/>:null}
             <Button id="signupButton" className={styles.button} onClick={()=>openModalSignUp()}>Signup</Button>
+            <Link id="homeSection" to={"/home"}>HOME</Link>
+            <Button id="blank" className={styles.button}>Logout</Button>
             <Link id="addSection" to={"/addbooks"}>ADD BOOKS</Link>
             <Switch>
-            <Route exact path="/" component={EmptyHome}/>
+            <Route exact path="/home" component={EmptyHome}/>
             <Route path="/addbooks" component={AddBooks}/>
             </Switch>
         </Router>
