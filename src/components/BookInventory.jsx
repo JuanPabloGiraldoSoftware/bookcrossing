@@ -22,7 +22,7 @@ export function BookInventory({booksList}) {
     }
     return (  
         <div className="row">
-            {booksList.map((book)=>(
+            {booksList.reverse().map((book)=>(
                 verifyContent(book)
             ))}
         </div>
