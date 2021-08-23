@@ -1,4 +1,4 @@
-import {React, Fragment, useState, useEffect} from 'react'
+import {React, Fragment, useState} from 'react'
 import { YourBooks } from './YourBooks'
 import {getCurrentUsr} from '../App';
 import "./styles/Containers.css"
@@ -19,9 +19,9 @@ export function AddingBar() {
         )
         setBlist((prev)=>{return [...prev,{id, blist, completed: false}]});
         id+=1;
-        getUserId("add");
+        refreshMyBooks("add");
     }
-    const getUserId = (operation) =>{
+    const refreshMyBooks = (operation) =>{
         const username = getCurrentUsr();
         var axios = require('axios');
         var data = JSON.stringify({
@@ -52,7 +52,6 @@ export function AddingBar() {
         .catch(function (error) {
         console.log(error);
         });
-
     }
 
     const bookAddingRequest = (uId) => {
@@ -134,9 +133,9 @@ export function AddingBar() {
         });
         
     }
-    useEffect(() => {
-        getUserId("getBooks");
-    }, [])
+    if(blist.length===1){
+        refreshMyBooks("refresh")
+    }
     return (<Fragment>
         <div className="body_container">
             <input id="bookTitleField" type="text" placeholder="Título"></input>
