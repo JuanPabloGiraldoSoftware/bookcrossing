@@ -10,9 +10,12 @@ export function BookInventory({booksList}) {
             return
         }else{
             const owner = book.owner?book.owner:book.userName;
+            if(getCurrentUsr()=== owner){
+                return;
+            }
            return(
                <div className="col-2 singlebook_container">
-                <h6 style={{color:"yellow"}}>{book.title}</h6>
+                <h4 style={{color:"yellow"}}>{book.title}</h4>
                 <ul>
                     <li><b>Autor:</b> {book.author}</li>
                     <li><b>Idioma:</b> {book.language}</li>
