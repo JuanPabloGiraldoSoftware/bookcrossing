@@ -4,6 +4,10 @@
     border: 1px solid #000000;
 } */
 
+:root{
+    --bookContainerSize: 100% 100%;
+}
+
 .title_container{
     display: flex;
     width: 100%;
@@ -44,18 +48,13 @@
 }
 
 .singlebook_container{
-
     color:white;
-    padding: 24px;
+    padding: 2%;
     justify-content: center;
     align-content: center;
     background-image: url("../../images/book_icon.png");
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    width: 400px;
+    background-size: var(--bookContainerSize);
 }
 
 .nav_bar {
