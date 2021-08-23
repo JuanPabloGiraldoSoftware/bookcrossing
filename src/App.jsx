@@ -229,7 +229,7 @@ export function App(){
             {currentSession===defaultSessionText? <Redirect to={"/"} />:<Redirect to={"/home"}/>}
             <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>REGISTRARSE</Button>
             <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{color:"white"}}>INICIO</Link></div>
-            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>ADICIONAR LIBROS</Link></div>
+            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>MIS LIBROS</Link></div>
         </div>
             <Switch>
             <Route exact path="/home" component={EmptyHome}/>
