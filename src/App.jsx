@@ -148,18 +148,36 @@ export function App(){
         document.getElementById("homeSection").style.visibility = "hidden"
     }
 
+    const caseInsensitiveL = ()=>{
+        const tfUserL = document.getElementById('userFieldL')
+        const tfPassL= document.getElementById('passwordFieldL')
+        tfUserL.value = tfUserL.value.toLowerCase();
+        tfPassL.value = tfPassL.value.toLowerCase();
+    }
+    const caseInsensitive = ()=>{
+        const tfUser = document.getElementById('userFieldS')
+        const tfPass= document.getElementById('passwordFieldS')
+        const tfMail = document.getElementById('mailField')
+        const tfCel= document.getElementById('celField')
+
+        tfUser.value = tfUser.value.toLowerCase();
+        tfPass.value = tfPass.value.toLowerCase();
+        tfMail.value = tfMail.value.toLowerCase();
+        tfCel.value = tfCel.value.toLowerCase();
+    }
+
     const modalSingup = (
         <div className={styles.modal}>
            <div align='center'>
                <h2>Signup</h2>
            </div>
-           <TextField id="userFieldS" label="Usuario" className={styles.textField}/>
+           <TextField id="userFieldS" label="Usuario" className={styles.textField} onChange={caseInsensitive}/>
            <br/>
-           <TextField id="passwordFieldS" label="Contraseña" className={styles.textField} type="password"/>
+           <TextField id="passwordFieldS" label="Contraseña" className={styles.textField} type="password" onChange={caseInsensitive}/>
            <br/>
-           <TextField id="mailField" label="Correo" className={styles.textField}/>
+           <TextField id="mailField" label="Correo" className={styles.textField} onChange={caseInsensitive}/>
            <br/>
-           <TextField id="celField" label="Cel." className={styles.textField}/>
+           <TextField id="celField" label="Cel." className={styles.textField} type="number" onChange={caseInsensitive}/>
            <br/> <br/>
            <div align='right'>
            <Button color="primary" onClick={signupRequest}>Registrarse</Button>
@@ -184,9 +202,9 @@ export function App(){
         <div align='center'>
             <h2>Login</h2>
         </div>
-        <TextField id="userFieldL" label="Usuario" className={styles.textField}/>
+        <TextField id="userFieldL" label="Usuario" className={styles.textField} onChange={caseInsensitiveL}/>
         <br/>
-        <TextField id="passwordFieldL" label="Contraseña" className={styles.textField} type="password"/>
+        <TextField id="passwordFieldL" label="Contraseña" className={styles.textField} type="password" onChange={caseInsensitiveL}/>
         <br/> <br/>
         <div align='right'>
         <Button color="primary" onClick={userRequest}>Autenticar</Button>
