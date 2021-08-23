@@ -20,7 +20,7 @@ export function EmptyHome() {
         axios(config)
         .then(function (response) {
             if(response.data){
-                setBlist(response.data);
+                setBlist(response.data.reverse());
             }else{
             }
         })

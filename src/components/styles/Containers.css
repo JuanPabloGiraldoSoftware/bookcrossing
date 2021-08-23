@@ -16,7 +16,7 @@
 
 .session_container{
     justify-content: center;
-    margin-left: 50%;
+    margin-left: 25%;
     background-color: blue;
     color: yellow;
 }
@@ -44,7 +44,38 @@
 }
 
 .singlebook_container{
-    margin-left: 50px;
+
+    color:white;
+    padding: 24px;
     justify-content: center;
     align-content: center;
+    background-image: url("../../images/book_icon.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 400px;
+}
+
+.nav_bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: rgb(145, 152, 255);
+    border-radius: 100px;
+  }
+  
+.nav_element{
+    display: inline;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+  
+  /* Change the link color on hover */
+.nav_element:hover {
+    background-color: #555;
+    color: white;
 }

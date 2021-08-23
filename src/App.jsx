@@ -28,13 +28,16 @@ const useStyles = makeStyles((theme)=>({
         width:'100%',
     },
     button:{
-        textAlign: 'center'
-    }
+        color: "white",
+        borderRadius: "100px",
+        marginLeft: "1%"
+
+        }
 }))
 
 export function App(){
     const styles = useStyles();
-    let defaultSessionText='You must login to use this app!'
+    let defaultSessionText='Inicie sesión para usar la aplicación!'
     const [currentModal, setModal] = useState('none');
     const [currentSession, setSession]= useState(defaultSessionText); 
 
@@ -42,16 +45,8 @@ export function App(){
         setModal('Signup')
     }
 
-    const openModalSignupSucced= ()=>{
-        setModal('Succed')
-    }
-
     const openModalLogin= ()=>{
         setModal('Login')
-    }
-
-    const openModalLoginSucced= ()=>{
-        setModal('SuccedL')
     }
 
     const openModalLoginFailed= ()=>{
@@ -86,7 +81,7 @@ export function App(){
         .then(function (response) {
             if(response.data){
                 console.log("Login Succed!");
-                setModal("SuccedL")
+                closeAnyModal();
                 setSession(usr);
                 currentUSR=usr;
                 document.getElementById("loginButton").style.visibility = "hidden"
@@ -130,7 +125,13 @@ export function App(){
         .then(function (response) {
             if(response){
                 closeAnyModal();
-                setModal("Succed")
+                setSession(usr);
+                currentUSR=usr;
+                document.getElementById("loginButton").style.visibility = "hidden"
+                document.getElementById("signupButton").style.visibility = "hidden"
+                document.getElementById("logoutButton").style.visibility = "visible"
+                document.getElementById("addSection").style.visibility = "visible"
+                document.getElementById("homeSection").style.visibility = "visible"
             }
         })
         .catch(function (error) {
@@ -166,26 +167,6 @@ export function App(){
            </div>
         </div>
     )
-    const modalSuccessSignup = (
-        <div className={styles.modal}>
-           <div align='center'>
-               <h2>Signup Success!</h2>
-           </div>
-           <div align='center'>
-           <Button onClick={()=>closeAnyModal()}>Cerrar</Button>
-           </div>
-        </div>
-    )
-    const modalSuccessLogin = (
-        <div className={styles.modal}>
-           <div align='center'>
-               <h2>Login Success!</h2>
-           </div>
-           <div align='center'>
-           <Button onClick={()=>closeAnyModal()}>Cerrar</Button>
-           </div>
-        </div>
-    )
 
     const modalFailedLogin = (
         <div className={styles.modal}>
@@ -216,13 +197,12 @@ export function App(){
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
-        document.getElementById("blank").style.visibility = "hidden"
     }, []);
     return (<div className = "bordering">
     <div className="title_container">
             <h1>Bookcrossing</h1>
             <div className="session_container">
-                {currentSession!==defaultSessionText?<h4>Welcome,</h4>:null}
+                {currentSession!==defaultSessionText?<h4>Bienvenido,</h4>:null}
                 <h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
             </div>
     </div>
@@ -232,19 +212,9 @@ export function App(){
         {modalSingup}
         </Modal>
         <Modal
-        open={currentModal==='Succed'}
-        onClose={openModalSignupSucced}>
-        {modalSuccessSignup}
-        </Modal>
-        <Modal
         open={currentModal==='Login'}
         onClose={openModalLogin}>
         {modalLogin}
-        </Modal>
-        <Modal
-        open={currentModal==='SuccedL'}
-        onClose={openModalLoginSucced}>
-        {modalSuccessLogin}
         </Modal>
         <Modal
         open={currentModal==='FailedL'}
@@ -252,14 +222,15 @@ export function App(){
         {modalFailedLogin}
         </Modal>
     <div>
-        <Button id="logoutButton" className={styles.button} onClick={()=>logout()}>Logout</Button>
-        <Button id="loginButton" className={styles.button} onClick={()=>openModalLogin()}>Login</Button>
-        <Router>
-            {currentSession===defaultSessionText? <Redirect to={"/"}/>:null}
-            <Button id="signupButton" className={styles.button} onClick={()=>openModalSignUp()}>Signup</Button>
-            <Link id="homeSection" to={"/home"}>HOME</Link>
-            <Button id="blank" className={styles.button}>Logout</Button>
-            <Link id="addSection" to={"/addbooks"}>ADD BOOKS</Link>
+    <Router>
+        <div className="nav_bar">
+            <Button id="logoutButton" onClick={()=>logout()} className={styles.button}>CERRAR SESIÓN</Button>
+            <Button id="loginButton" onClick={()=>openModalLogin()} className={styles.button}>INICIAR SESISÓN</Button>
+            {currentSession===defaultSessionText? <Redirect to={"/"} />:<Redirect to={"/home"}/>}
+            <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>REGISTRARSE</Button>
+            <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{color:"white"}}>INICIO</Link></div>
+            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>ADICIONAR LIBROS</Link></div>
+        </div>
             <Switch>
             <Route exact path="/home" component={EmptyHome}/>
             <Route path="/addbooks" component={AddBooks}/>
