@@ -1,5 +1,5 @@
-import {React, Fragment, useState} from 'react'
-import { BookInventory } from './BookInventory';
+import {React, Fragment, useState, useEffect} from 'react'
+import { YourBooks } from './YourBooks'
 import {getCurrentUsr} from '../App';
 import "./styles/Containers.css"
 
@@ -19,10 +19,9 @@ export function AddingBar() {
         )
         setBlist((prev)=>{return [...prev,{id, blist, completed: false}]});
         id+=1;
-        getUserId();
+        getUserId("add");
     }
-
-    const getUserId = () =>{
+    const getUserId = (operation) =>{
         const username = getCurrentUsr();
         var axios = require('axios');
         var data = JSON.stringify({
@@ -43,7 +42,7 @@ export function AddingBar() {
         axios(config)
         .then(function (response) {
             if(response.data){
-                bookAddingRequest(response.data.id)
+                operation==="add"?bookAddingRequest(response.data.id):getUserBooks(response.data.id);
                 console.log(response.data.id)
             }else{
                 console.log("Error!");
@@ -100,6 +99,44 @@ export function AddingBar() {
         });
         
     }
+
+    const getUserBooks = (uId) => {
+        const ownerId = JSON.stringify(uId);
+        var axios = require('axios');
+        var data = JSON.stringify({
+        "userId": ownerId
+        });
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://bookcrossing-server.herokuapp.com/getBooksFromUser' ;
+        console.log(baseUrl);
+        var config = {
+        method: 'post',
+        url: baseUrl,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+
+        axios(config)
+        .then(function (response) {
+            if(response.data){
+                console.log(response.data)
+                console.log(response.data);
+                setBlist(response.data)
+                id+=1;
+                
+            }else{
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+        
+    }
+    useEffect(() => {
+        getUserId("getBooks");
+    }, [])
     return (<Fragment>
         <div className="body_container">
             <input id="bookTitleField" type="text" placeholder="Título"></input>
@@ -107,9 +144,9 @@ export function AddingBar() {
             <input id="bookLanguage" type="text" placeholder="Idioma"></input>
             <input id="bookGender" type="text" placeholder="Género Literario"></input>
             <input id="bookYear" type="text" placeholder="Año"></input>
-            <button onClick={addBook}>Add</button>
+            <button onClick={addBook}>Agregar Libro</button>
         </div>
-        <BookInventory booksList={blist}/>
+        <YourBooks booksList={blist}/>
         </Fragment>
     )
 }
