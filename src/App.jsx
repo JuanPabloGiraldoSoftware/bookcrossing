@@ -125,8 +125,8 @@ export function App(){
         .then(function (response) {
             if(response){
                 closeAnyModal();
-                setSession(usr);
-                currentUSR=usr;
+                setSession(document.getElementById('userFieldS').value);
+                currentUSR=document.getElementById('userFieldS').value;
                 document.getElementById("loginButton").style.visibility = "hidden"
                 document.getElementById("signupButton").style.visibility = "hidden"
                 document.getElementById("logoutButton").style.visibility = "visible"
