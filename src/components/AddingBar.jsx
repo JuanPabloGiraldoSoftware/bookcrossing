@@ -28,7 +28,7 @@ export function AddingBar() {
         "username": username,
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://bookcrossing-server.herokuapp.com/getUserId' ;
+        var baseUrl = `https://${REACT_APP_BACKEND_URL}/getUserId` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -73,7 +73,7 @@ export function AddingBar() {
         "ownerId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://bookcrossing-server.herokuapp.com/addingbooks' ;
+        var baseUrl = `https://${REACT_APP_BACKEND_URL}/addingbooks` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -106,7 +106,7 @@ export function AddingBar() {
         "userId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://bookcrossing-server.herokuapp.com/getBooksFromUser' ;
+        var baseUrl = `https://${REACT_APP_BACKEND_URL}/getBooksFromUser` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
