@@ -66,7 +66,7 @@ export function App(){
         "password": pass
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/login` ;
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/login':'https://bookcrossing-server.herokuapp.com/login' ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -112,7 +112,7 @@ export function App(){
         "cel": cel
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/signup` ;
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/signup':'https://bookcrossing-server.herokuapp.com/signup' ;
         console.log(baseUrl);
         var config = {
         method: 'post',
