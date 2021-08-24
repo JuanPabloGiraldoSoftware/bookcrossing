@@ -28,7 +28,7 @@ export function AddingBar() {
         "username": username,
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -73,7 +73,7 @@ export function AddingBar() {
         "ownerId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/addingbooks` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/addingbooks` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -106,7 +106,7 @@ export function AddingBar() {
         "userId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/getBooksFromUser` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getBooksFromUser` ;
         console.log(baseUrl);
         var config = {
         method: 'post',

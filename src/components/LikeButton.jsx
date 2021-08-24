@@ -10,7 +10,7 @@ export function LikeButton(singleBook) {
             "traderId": traderId
             });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/verifySelected` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifySelected` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -40,7 +40,7 @@ export function LikeButton(singleBook) {
         "username": username,
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -75,7 +75,7 @@ export function LikeButton(singleBook) {
             "bookId": singleBook.singleBook.id
             });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/saveSelection` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -106,7 +106,7 @@ export function LikeButton(singleBook) {
             "ownerId": singleBook.singleBook.userId,
             });
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/verifyMatch` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
         console.log(baseUrl);
         var config = {
         method: 'post',

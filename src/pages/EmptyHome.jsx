@@ -7,7 +7,7 @@ export function EmptyHome() {
     const userRequest = () => {
         var axios = require('axios');
         console.log(process.env.NODE_ENV);
-        var baseUrl = `https://${REACT_APP_BACKEND_URL}/getallbooks` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
         console.log(baseUrl);
         var config = {
         method: 'get',
