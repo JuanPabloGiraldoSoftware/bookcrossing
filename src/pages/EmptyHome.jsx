@@ -6,7 +6,9 @@ export function EmptyHome() {
     const [blist, setBlist] = useState([{}])
     const userRequest = () => {
         var axios = require('axios');
+        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
+        console.log(baseUrl);
         var config = {
         method: 'get',
         url: baseUrl,
