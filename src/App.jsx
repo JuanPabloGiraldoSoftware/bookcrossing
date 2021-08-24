@@ -99,7 +99,8 @@ export function App(){
         });
     }
     const signupRequest = () => {
-        const usr = JSON.stringify(document.getElementById('userFieldS').value);
+        const usrRaw = document.getElementById('userFieldS').value;
+        const usr = JSON.stringify(usrRaw);
         const pass = JSON.stringify(document.getElementById('passwordFieldS').value);
         const email = JSON.stringify(document.getElementById('mailField').value);
         const cel = JSON.stringify(document.getElementById('celField').value);
@@ -125,8 +126,8 @@ export function App(){
         .then(function (response) {
             if(response){
                 closeAnyModal();
-                setSession(document.getElementById('userFieldS').value);
-                currentUSR=document.getElementById('userFieldS').value;
+                setSession(usrRaw);
+                currentUSR=usrRaw;
                 document.getElementById("loginButton").style.visibility = "hidden"
                 document.getElementById("signupButton").style.visibility = "hidden"
                 document.getElementById("logoutButton").style.visibility = "visible"
