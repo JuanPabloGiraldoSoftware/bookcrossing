@@ -20,7 +20,6 @@ export function LikeButton(singleBook) {
         };
         axios(config)
         .then(function (response) {
-            (response.data)
             if(response.data){
                 saveSelection(traderId)
             }else{
