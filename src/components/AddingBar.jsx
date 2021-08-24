@@ -28,7 +28,7 @@ export function AddingBar() {
         "username": username,
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://moody-hound-69.loca.lt/getUserId' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -73,7 +73,7 @@ export function AddingBar() {
         "ownerId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://moody-hound-69.loca.lt/addingbooks' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/addingbooks` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -106,7 +106,7 @@ export function AddingBar() {
         "userId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://moody-hound-69.loca.lt/getBooksFromUser' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getBooksFromUser` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -133,7 +133,7 @@ export function AddingBar() {
         });
         
     }
-    if(blist.length<1){
+    if(blist.length>=1){
         refreshMyBooks("refresh")
     }
     return (<Fragment>

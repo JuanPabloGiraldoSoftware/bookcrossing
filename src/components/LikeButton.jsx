@@ -10,7 +10,7 @@ export function LikeButton(singleBook) {
             "traderId": traderId
             });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/verifySelected':'https://moody-hound-69.loca.lt/verifySelected' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifySelected`  ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -40,7 +40,7 @@ export function LikeButton(singleBook) {
         "username": username,
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://moody-hound-69.loca.lt/getUserId' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -75,7 +75,7 @@ export function LikeButton(singleBook) {
             "bookId": singleBook.singleBook.id
             });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/saveSelection':'https://moody-hound-69.loca.lt/saveSelection' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -106,7 +106,7 @@ export function LikeButton(singleBook) {
             "ownerId": singleBook.singleBook.userId,
             });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/verifyMatch':'https://moody-hound-69.loca.lt/verifyMatch' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
         console.log(baseUrl);
         var config = {
         method: 'post',

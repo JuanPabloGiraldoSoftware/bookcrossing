@@ -66,7 +66,7 @@ export function App(){
         "password": pass
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/login':'https://moody-hound-69.loca.lt/login' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/login` ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -112,7 +112,7 @@ export function App(){
         "cel": cel
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/signup':'https://moody-hound-69.loca.lt/signup' ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/signup`;
         console.log(baseUrl);
         var config = {
         method: 'post',
