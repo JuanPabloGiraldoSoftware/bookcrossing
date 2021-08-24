@@ -9,9 +9,7 @@ export function LikeButton(singleBook) {
             "bookId":bookId,
             "traderId": traderId
             });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifySelected` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -22,7 +20,6 @@ export function LikeButton(singleBook) {
         };
         axios(config)
         .then(function (response) {
-            console.log(response.data)
             if(response.data){
                 saveSelection(traderId)
             }else{
@@ -39,9 +36,7 @@ export function LikeButton(singleBook) {
         var data = JSON.stringify({
         "username": username,
         });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -54,7 +49,6 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log(singleBook.singleBook)
                 isSelected(singleBook.singleBook.id,response.data.id)
             }else{
                 console.log("Error!");
@@ -74,9 +68,7 @@ export function LikeButton(singleBook) {
             "ownerId": singleBook.singleBook.userId,
             "bookId": singleBook.singleBook.id
             });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -105,9 +97,7 @@ export function LikeButton(singleBook) {
             "traderId": traderId,
             "ownerId": singleBook.singleBook.userId,
             });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
