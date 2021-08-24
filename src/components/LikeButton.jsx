@@ -9,7 +9,9 @@ export function LikeButton(singleBook) {
             "bookId":bookId,
             "traderId": traderId
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifySelected` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/verifySelected':'https://bookcrossing-server.herokuapp.com/verifySelected' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -20,6 +22,7 @@ export function LikeButton(singleBook) {
         };
         axios(config)
         .then(function (response) {
+            console.log(response.data)
             if(response.data){
                 saveSelection(traderId)
             }else{
@@ -36,7 +39,9 @@ export function LikeButton(singleBook) {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://bookcrossing-server.herokuapp.com/getUserId' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -49,6 +54,7 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
+                console.log(singleBook.singleBook)
                 isSelected(singleBook.singleBook.id,response.data.id)
             }else{
                 console.log("Error!");
@@ -68,7 +74,9 @@ export function LikeButton(singleBook) {
             "ownerId": singleBook.singleBook.userId,
             "bookId": singleBook.singleBook.id
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/saveSelection':'https://bookcrossing-server.herokuapp.com/saveSelection' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -97,7 +105,9 @@ export function LikeButton(singleBook) {
             "traderId": traderId,
             "ownerId": singleBook.singleBook.userId,
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/verifyMatch':'https://bookcrossing-server.herokuapp.com/verifyMatch' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,

@@ -27,7 +27,9 @@ export function AddingBar() {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://bookcrossing-server.herokuapp.com/getUserId' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -41,10 +43,14 @@ export function AddingBar() {
         .then(function (response) {
             if(response.data){
                 operation==="add"?bookAddingRequest(response.data.id):getUserBooks(response.data.id);
+                console.log(response.data.id)
             }else{
+                console.log("Error!");
+                console.log(response.data)
             }
         })
         .catch(function (error) {
+        console.log(error);
         });
     }
 
@@ -66,7 +72,9 @@ export function AddingBar() {
         "owner": owner,
         "ownerId": ownerId
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/addingbooks` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://bookcrossing-server.herokuapp.com/addingbooks' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -79,7 +87,10 @@ export function AddingBar() {
         axios(config)
         .then(function (response) {
             if(response.data){
+                console.log("Book correctly added!");
             }else{
+                console.log("Error!");
+                console.log(response.data)
             }
         })
         .catch(function (error) {
@@ -94,7 +105,9 @@ export function AddingBar() {
         var data = JSON.stringify({
         "userId": ownerId
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getBooksFromUser` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://bookcrossing-server.herokuapp.com/getBooksFromUser' ;
+        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -107,6 +120,8 @@ export function AddingBar() {
         axios(config)
         .then(function (response) {
             if(response.data){
+                console.log(response.data)
+                console.log(response.data);
                 setBlist(response.data)
                 id+=1;
                 

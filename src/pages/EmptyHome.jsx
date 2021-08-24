@@ -6,7 +6,9 @@ export function EmptyHome() {
     const [blist, setBlist] = useState([{}])
     const userRequest = () => {
         var axios = require('axios');
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
+        console.log(process.env.NODE_ENV);
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getallbooks':'https://bookcrossing-server.herokuapp.com/getallbooks' ;
+        console.log(baseUrl);
         var config = {
         method: 'get',
         url: baseUrl,
