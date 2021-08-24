@@ -54,6 +54,7 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
+                console.log(singleBook.singleBook)
                 isSelected(singleBook.singleBook.id,response.data.id)
             }else{
                 console.log("Error!");
@@ -99,10 +100,10 @@ export function LikeButton(singleBook) {
     }
 
     const verifyMatch = (traderId)=>{
-
         var axios = require('axios');
         var data = JSON.stringify({
-            "traderId": traderId
+            "traderId": traderId,
+            "ownerId": singleBook.singleBook.userId,
             });
         console.log(process.env.NODE_ENV);
         var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/verifyMatch':'https://bookcrossing-server.herokuapp.com/verifyMatch' ;
@@ -118,7 +119,7 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log(response.data)
+                console.log(response.data);
             }else{
             }
         })
