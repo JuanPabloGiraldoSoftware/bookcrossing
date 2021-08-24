@@ -133,7 +133,7 @@ export function AddingBar() {
         });
         
     }
-    if(blist.length===1){
+    if(blist.length<1){
         refreshMyBooks("refresh")
     }
     return (<Fragment>
