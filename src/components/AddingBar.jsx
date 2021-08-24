@@ -28,7 +28,7 @@ export function AddingBar() {
         "username": username,
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://bookcrossing-server.herokuapp.com/getUserId' ;
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://moody-hound-69.loca.lt/getUserId' ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -73,7 +73,7 @@ export function AddingBar() {
         "ownerId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://bookcrossing-server.herokuapp.com/addingbooks' ;
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://moody-hound-69.loca.lt/addingbooks' ;
         console.log(baseUrl);
         var config = {
         method: 'post',
@@ -106,7 +106,7 @@ export function AddingBar() {
         "userId": ownerId
         });
         console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://bookcrossing-server.herokuapp.com/getBooksFromUser' ;
+        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://moody-hound-69.loca.lt/getBooksFromUser' ;
         console.log(baseUrl);
         var config = {
         method: 'post',
