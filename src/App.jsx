@@ -1,7 +1,7 @@
 import { React, useState, useEffect} from 'react';
 import {AddBooks} from './pages/AddBooks';
 import {EmptyHome} from './pages/EmptyHome'
-import {BrowserRouter as Router, Switch, Route, Link,useHistory, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
 import "./components/styles/Containers.css"
@@ -55,7 +55,6 @@ export function App(){
     const closeAnyModal=()=>{
         setModal('none')
     }
-    let history = useHistory();
     const userRequest = () => {
         const usr = document.getElementById('userFieldL').value;
         const pass = document.getElementById('passwordFieldL').value;
