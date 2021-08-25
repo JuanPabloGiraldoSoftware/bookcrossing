@@ -1,17 +1,15 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import "./styles/Buttons.css"
 import {getCurrentUsr} from '../App';
 export function LikeButton(singleBook) {
-
+    const [selected, setSelected] = useState(false)
     const isSelected = (bookId,traderId)=>{
         var axios = require('axios');
         var data = JSON.stringify({
             "bookId":bookId,
             "traderId": traderId
             });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifySelected`  ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -22,7 +20,6 @@ export function LikeButton(singleBook) {
         };
         axios(config)
         .then(function (response) {
-            console.log(response.data)
             if(response.data){
                 saveSelection(traderId)
             }else{
@@ -33,15 +30,13 @@ export function LikeButton(singleBook) {
         });
     }
 
-    const getUser = () =>{
+    const getUser = (op) =>{
         const username = getCurrentUsr();
         var axios = require('axios');
         var data = JSON.stringify({
         "username": username,
         });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -55,7 +50,13 @@ export function LikeButton(singleBook) {
         .then(function (response) {
             if(response.data){
                 console.log(singleBook.singleBook)
-                isSelected(singleBook.singleBook.id,response.data.id)
+                if(op==="init"){
+                    verifyLikedBook(response.data.id)
+                }else if(op==='like'){
+                    isSelected(singleBook.singleBook.id,response.data.id)
+                }else if(op==='unlike'){
+                    unlikeBook(response.data.id)
+                }
             }else{
                 console.log("Error!");
                 console.log(response.data)
@@ -74,9 +75,7 @@ export function LikeButton(singleBook) {
             "ownerId": singleBook.singleBook.userId,
             "bookId": singleBook.singleBook.id
             });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -90,6 +89,7 @@ export function LikeButton(singleBook) {
         .then(function (response) {
             if(response.data){
                 console.log(response.data)
+                setSelected(true)
                 verifyMatch(usrId)
             }else{
             }
@@ -105,9 +105,7 @@ export function LikeButton(singleBook) {
             "traderId": traderId,
             "ownerId": singleBook.singleBook.userId,
             });
-        console.log(process.env.NODE_ENV);
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
-        console.log(baseUrl);
         var config = {
         method: 'post',
         url: baseUrl,
@@ -127,7 +125,77 @@ export function LikeButton(singleBook) {
         console.log(error);
         });
     }
+    const verifyLikedBook = (id)=>{
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "userId": id,
+            "bookId": singleBook.singleBook.id,
+            });
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyLikedBook` ;
+        var config = {
+        method: 'post',
+        url: baseUrl,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data: data
+        };
+        axios(config)
+        .then(function (response) {
+            console.log(response)
+            if(response.data){
+                console.log("responseVerify",response.data);
+                setSelected(true)
+            }else{
+                setSelected(false)
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+
+    const unlikeBook = (id) =>{
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "userId": id,
+            "bookId": singleBook.singleBook.id,
+            });
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/unlikeBook` ;
+        var config = {
+        method: 'post',
+        url: baseUrl,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data: data
+        };
+        axios(config)
+        .then(function (response) {
+            console.log(response)
+            if(response.data){
+                console.log("responseVerify",response.data);
+                setSelected(false)
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+
+    const triggerLike = () =>{
+        getUser('like');
+    }
+
+    const triggerUnlike = () =>{
+        getUser('unlike');
+    }
+
+    useEffect(() => {
+        getUser('init')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
-        <div className="select_button"><button id={singleBook.singleBook.id} onClick={getUser}>Me gusta</button></div>
+        selected?<div className="select_button"><button id={singleBook.singleBook.id} onClick={triggerUnlike}>Ya no me gusta</button></div>:<div className="select_button"><button id={singleBook.singleBook.id} onClick={triggerLike}>Me gusta</button></div>
     )
 }
