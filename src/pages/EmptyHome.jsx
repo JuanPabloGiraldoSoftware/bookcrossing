@@ -12,6 +12,7 @@ export function EmptyHome() {
         method: 'get',
         url: baseUrl,
         headers: { 
+            'Bypass-Tunnel-Reminder':true,
             'Content-Type': 'application/json'
         }
         };

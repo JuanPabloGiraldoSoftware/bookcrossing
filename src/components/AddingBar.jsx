@@ -32,6 +32,7 @@ export function AddingBar() {
         method: 'post',
         url: baseUrl,
         headers: { 
+            'Bypass-Tunnel-Reminder':true,
             'Content-Type': 'application/json'
         },
         data : data
@@ -74,6 +75,7 @@ export function AddingBar() {
         method: 'post',
         url: baseUrl,
         headers: { 
+            'Bypass-Tunnel-Reminder':true,
             'Content-Type': 'application/json'
         },
         data : data
@@ -104,6 +106,7 @@ export function AddingBar() {
         method: 'post',
         url: baseUrl,
         headers: { 
+            'Bypass-Tunnel-Reminder':true,
             'Content-Type': 'application/json'
         },
         data : data

@@ -69,6 +69,7 @@ export function App(){
         method: 'post',
         url: baseUrl,
         headers: { 
+            'Bypass-Tunnel-Reminder':true,
             'Content-Type': 'application/json'
         },
         data : data
@@ -111,6 +112,7 @@ export function App(){
         method: 'post',
         url: baseUrl,
         headers: { 
+            'Bypass-Tunnel-Reminder':true,
             'Content-Type': 'application/json'
         },
         data : data
