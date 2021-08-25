@@ -204,12 +204,15 @@ export function App(){
         <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
         </div>
      </div>)
+
+    
       useEffect(()=>{
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
     }, []);
-    return (<div className = "bordering">
+    return (  
+    <div className = "bordering">
     <div className="title_container">
             <h1>Bookcrossing</h1>
             <div className="session_container">

@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { BookInventory } from '../components/BookInventory'
-
+import LoadingOverlay from 'react-loading-overlay'
 
 export function EmptyHome() {
     const [blist, setBlist] = useState([{}])
+    const [loading, setLoading] = useState(true)
     const userRequest = () => {
         var axios = require('axios');
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
@@ -28,10 +29,21 @@ export function EmptyHome() {
     }
     useEffect(() => {
         userRequest();
+        setTimeout(()=>{
+            setLoading(false);
+        }, 5000)
     }, [])
+
     return (
-        <div>
+        <LoadingOverlay
+        active={loading}
+        spinner
+        fadeSpeed="250"
+        text="Cargando...">
+        <div className="MainDiv">
+
             <BookInventory booksList={blist}/>
         </div>
+        </LoadingOverlay>
     )
 }
