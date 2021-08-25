@@ -14,6 +14,7 @@ export function LikeButton(singleBook) {
     const [selected, setSelected] = useState(false)
     const [loading, setLoading] = useState(false)
     const [match, setMatch] = useState(false)
+    const [unlike, setUnlike] = useState(false)
     const isSelected = (bookId,traderId)=>{
         var axios = require('axios');
         var data = JSON.stringify({
@@ -233,6 +234,7 @@ export function LikeButton(singleBook) {
     }
 
     const triggerUnlike = () =>{
+        setUnlike(true)
         getUser('unlike');
         setLoading(true)
         setTimeout(()=>{
@@ -247,6 +249,7 @@ export function LikeButton(singleBook) {
     
     return (
         selected?<div className="select_button">
+            {unlike?<Redirect to={`/home`} />:null}
             {match?<Redirect to={`/matchview`} />:null}
             <LoadingOverlay
         style = {{width:"100%", height:"100%"}}
