@@ -1,7 +1,7 @@
 import { React, useState, useEffect} from 'react';
 import {AddBooks} from './pages/AddBooks';
 import {EmptyHome} from './pages/EmptyHome'
-import {BrowserRouter as Router, Switch, Route, Link,useHistory, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
 import "./components/styles/Containers.css"
@@ -55,8 +55,6 @@ export function App(){
     const closeAnyModal=()=>{
         setModal('none')
     }
-    let history = useHistory();
-    console.log(history)
     const userRequest = () => {
         const usr = document.getElementById('userFieldL').value;
         const pass = document.getElementById('passwordFieldL').value;
@@ -65,9 +63,7 @@ export function App(){
         "username": usr,
         "password": pass
         });
-        console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/login':'https://moody-hound-69.loca.lt/login' ;
-        console.log(baseUrl);
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/login` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -80,7 +76,6 @@ export function App(){
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log("Login Succed!");
                 closeAnyModal();
                 setSession(usr);
                 currentUSR=usr;
@@ -91,7 +86,6 @@ export function App(){
                 document.getElementById("homeSection").style.visibility = "visible"
             }else{
                 setModal("FailedL")
-                console.log("Unexistent User!");
             }
         })
         .catch(function (error) {
@@ -111,9 +105,7 @@ export function App(){
         "email": email,
         "cel": cel
         });
-        console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/signup':'https://moody-hound-69.loca.lt/signup' ;
-        console.log(baseUrl);
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/signup`;
         var config = {
         method: 'post',
         url: baseUrl,

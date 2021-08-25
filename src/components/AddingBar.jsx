@@ -27,9 +27,7 @@ export function AddingBar() {
         var data = JSON.stringify({
         "username": username,
         });
-        console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getUserId':'https://moody-hound-69.loca.lt/getUserId' ;
-        console.log(baseUrl);
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -43,7 +41,6 @@ export function AddingBar() {
         .then(function (response) {
             if(response.data){
                 operation==="add"?bookAddingRequest(response.data.id):getUserBooks(response.data.id);
-                console.log(response.data.id)
             }else{
                 console.log("Error!");
                 console.log(response.data)
@@ -72,9 +69,7 @@ export function AddingBar() {
         "owner": owner,
         "ownerId": ownerId
         });
-        console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/addingbooks':'https://moody-hound-69.loca.lt/addingbooks' ;
-        console.log(baseUrl);
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/addingbooks` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -87,7 +82,6 @@ export function AddingBar() {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log("Book correctly added!");
             }else{
                 console.log("Error!");
                 console.log(response.data)
@@ -105,9 +99,7 @@ export function AddingBar() {
         var data = JSON.stringify({
         "userId": ownerId
         });
-        console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getBooksFromUser':'https://moody-hound-69.loca.lt/getBooksFromUser' ;
-        console.log(baseUrl);
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getBooksFromUser` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -120,8 +112,6 @@ export function AddingBar() {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log(response.data)
-                console.log(response.data);
                 setBlist(response.data)
                 id+=1;
                 
@@ -133,7 +123,7 @@ export function AddingBar() {
         });
         
     }
-    if(blist.length<1){
+    if(blist.length>=1){
         refreshMyBooks("refresh")
     }
     return (<Fragment>

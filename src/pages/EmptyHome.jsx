@@ -6,9 +6,7 @@ export function EmptyHome() {
     const [blist, setBlist] = useState([{}])
     const userRequest = () => {
         var axios = require('axios');
-        console.log(process.env.NODE_ENV);
-        var baseUrl = process.env.NODE_ENV==='development'? 'http://localhost:4000/getallbooks':'https://moody-hound-69.loca.lt/getallbooks' ;
-        console.log(baseUrl);
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
         var config = {
         method: 'get',
         url: baseUrl,
