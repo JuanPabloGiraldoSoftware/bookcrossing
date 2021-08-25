@@ -1,6 +1,7 @@
 import { React, useState, useEffect} from 'react';
 import {AddBooks} from './pages/AddBooks';
-import {EmptyHome} from './pages/EmptyHome'
+import {EmptyHome} from './pages/EmptyHome';
+import { MatchView } from './pages/MatchView';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
@@ -248,6 +249,7 @@ export function App(){
             <Switch>
             <Route exact path="/home" component={EmptyHome}/>
             <Route path="/addbooks" component={AddBooks}/>
+            <Route path="/matchview" component={MatchView}/>
             </Switch>
         </Router>
 
