@@ -4,6 +4,10 @@
     border: 1px solid #000000;
 } */
 
+.MainDiv {
+    height: 100vh;
+}
+
 :root{
     --bookContainerSize: 100% 100%;
 }
