@@ -1,8 +1,9 @@
 /*.main_container{}*/
 
-/* .bordering{
-    border: 1px solid #000000;
-} */
+.bordering{
+    width: 100vw;
+    
+} 
 
 .MainDiv {
     height: 100vh;
@@ -14,24 +15,23 @@
 
 .title_container{
     display: flex;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
     border: 1px solid #000000;
-    border-radius: 30px;
-    background-color: blue;
-    color: yellow;
+    background-color: #292775;
+    color: white;
 }
 
 .session_container{
-    justify-content: center;
     margin-left: 25%;
-    background-color: blue;
-    color: yellow;
+    background-color: #292775;
+    color: white;
+    justify-content: center;
 }
 
 .body_container{
     display: flex;
-    width: 100%;
+    width: 100vw;
     margin-top: 20px;
     justify-content: center;
     align-content: center;
@@ -39,7 +39,7 @@
 }
 
 .login_container{
-    width: 100%;
+    width: 100vw;
     margin-top: 20px;
     justify-content: center;
     align-content: center;
@@ -48,7 +48,7 @@
 
 .books_container{
     display: flex;
-    width: 100%;
+    width: 100vw;
 }
 
 .singlebook_container{
@@ -65,9 +65,8 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 100%;
-    background-color: rgb(145, 152, 255);
-    border-radius: 100px;
+    width: 100vw;
+    background-color:#E85654;
   }
   
 .nav_element{
@@ -79,6 +78,34 @@
   
   /* Change the link color on hover */
 .nav_element:hover {
-    background-color: #555;
+    background-color: transparent;
     color: white;
 }
+
+
+.BookInventoryShow{
+    width: 100vw;
+}
+
+.row{
+    width: 100vw;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.col-2{
+    width: 100%;
+    height: 100%;
+
+}
+
+.carousel{
+    width: 100vw;
+    height: 85vh;
+}
+
+.carousel-item{
+    width: 100vw;
+    height: 85vh;
+}
+
