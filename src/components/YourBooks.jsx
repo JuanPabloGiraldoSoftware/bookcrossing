@@ -15,7 +15,7 @@ export function YourBooks({booksList}) {
             }
            return(
                <div className="col-2 singlebook_container">
-                <h4 style={{color:"yellow"}}>{book.title}</h4>
+                <h4 style={{color:"#E85654"}}>{book.title}</h4>
                 <ul>
                     <li><b>Autor:</b> {book.author}</li>
                     <li><b>Idioma:</b> {book.language}</li>
