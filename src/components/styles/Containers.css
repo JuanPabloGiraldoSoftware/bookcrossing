@@ -85,18 +85,7 @@
 
 .BookInventoryShow{
     width: 100vw;
-}
-
-.row{
-    width: 100vw;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
-.col-2{
-    width: 100%;
-    height: 100%;
-
+    height: 100vh;
 }
 
 .carousel{

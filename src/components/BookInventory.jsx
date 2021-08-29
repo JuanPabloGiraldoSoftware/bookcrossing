@@ -19,7 +19,7 @@ export function BookInventory({booksList, booksTrader, booksOwner}) {
             const buttonLike = getCurrentUsr()!== owner?<LikeButton singleBook={book}/>:null
            return (
            <div className="col-2 singlebook_container">
-            <h4 style={{color:"white"}}>{book.title}</h4>
+            <h4 style={{color:"#E85654"}}>{book.title}</h4>
             <ul>
                 <li><b>Autor:</b> {book.author}</li>
                 <li><b>Idioma:</b> {book.language}</li>

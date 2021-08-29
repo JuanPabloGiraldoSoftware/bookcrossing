@@ -2,6 +2,7 @@ import { React, useState, useEffect} from 'react';
 import {AddBooks} from './pages/AddBooks';
 import {EmptyHome} from './pages/EmptyHome';
 import { MatchView } from './pages/MatchView';
+import { PendingTrades } from './pages/PendingTrades';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
@@ -89,6 +90,7 @@ export function App(){
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
+                document.getElementById("pendingSection").style.visibility = "visible"
             }else{
                 setModal("FailedL")
             }
@@ -131,6 +133,7 @@ export function App(){
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
+                document.getElementById("pendingSection").style.visibility = "visible"
             }
         })
         .catch(function (error) {
@@ -145,6 +148,7 @@ export function App(){
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
+        document.getElementById("pendingSection").style.visibility = "hidden"
     }
 
     const caseInsensitiveL = ()=>{
@@ -216,6 +220,7 @@ export function App(){
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
+        document.getElementById("pendingSection").style.visibility = "hidden"
     }, []);
     return (
 
@@ -251,11 +256,13 @@ export function App(){
             <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>Registrarse</Button>
             <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{color:"white"}}>INICIO</Link></div>
             <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>MIS LIBROS</Link></div>
+            <div className="nav_element" id="pendingSection"><Link  to={"/pendingtrades"} style={{color:"white"}}>INTERCAMBIOS PENDIENTES</Link></div>
         </div>
             <Switch>
             <Route exact path="/home" component={EmptyHome}/>
             <Route path="/addbooks" component={AddBooks}/>
             <Route path="/matchview" component={MatchView}/>
+            <Route path="/pendingtrades" component={PendingTrades}/>
             </Switch>
         </Router>
 
