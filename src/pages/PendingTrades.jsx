@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { BookInventory } from '../components/BookInventory'
 import { getCurrentUsr } from '../App'
 
 export function PendingTrades() {
 
-    const [[bOwner,bTrader], setBooks] = useState([[],[]]);
+    const [[mUsers,mapUsers, uId], setMatch] = useState([[],[],null]);
     const getAllMatchBooks = (userID) =>{
         var axios = require('axios');
         var data = JSON.stringify({
@@ -26,14 +26,7 @@ export function PendingTrades() {
             if(response.data){
                const mappedUsers = response.data[0];
                const matchedUsers = response.data[1];
-               console.log('response on front',response.data);
-               console.log('mappedUsers on front', mappedUsers)
-               console.log('matchedUsers on front', matchedUsers)
-               for (let i = 0; i < matchedUsers.length; i++) {
-                    console.log('booksTrad',mappedUsers[`${matchedUsers[i]}-->${userID}`])
-                    console.log('booksOwn',mappedUsers[`${userID}-->${matchedUsers[i]}`])
-                    setBooks([mappedUsers[`${matchedUsers[i]}-->${userID}`],mappedUsers[`${userID}-->${matchedUsers[i]}`]])
-               }
+               setMatch([matchedUsers,mappedUsers,userID])
 
             }else{
                 console.log("Error!");
@@ -75,13 +68,19 @@ export function PendingTrades() {
         console.log(error);
         });
     }
+
     useEffect(() => {
         getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
         <div>
-            {(bTrader.length || bOwner.length)?<BookInventory booksList = {[]} booksTrader = {bTrader} booksOwner = {bOwner}/>:null}
+            {mUsers.map((user)=>(
+                <Fragment>
+                <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName}`}</h3></div>
+                <BookInventory booksList = {[]} booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]}/>
+                </Fragment>
+            ))}
         </div>
     )
 }
