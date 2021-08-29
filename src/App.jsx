@@ -6,7 +6,9 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-rout
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
 import "./components/styles/Containers.css"
-
+import car1 from "./images/car_1.jpg";
+import car2 from "./images/car_2.jpg";
+import car3 from "./images/car_3.jpg";
 var currentUSR="none"
 
 export const getCurrentUsr=()=>{
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme)=>({
 
 export function App(){
     const styles = useStyles();
-    let defaultSessionText='Inicie sesión para usar la aplicación!'
+    let defaultSessionText='¡Inicia sesión para usar la aplicación!'
     const [currentModal, setModal] = useState('none');
     const [currentSession, setSession]= useState(defaultSessionText); 
 
@@ -64,6 +66,7 @@ export function App(){
         "username": usr,
         "password": pass
         });
+        console.log(process.env)
         var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/login` ;
         var config = {
         method: 'post',
@@ -165,7 +168,7 @@ export function App(){
     const modalSingup = (
         <div className={styles.modal}>
            <div align='center'>
-               <h2>Signup</h2>
+               <h2>Registrarse</h2>
            </div>
            <TextField id="userFieldS" label="Usuario" className={styles.textField} onChange={caseInsensitive}/>
            <br/>
@@ -196,7 +199,7 @@ export function App(){
            
         <div className={styles.modal}>
         <div align='center'>
-            <h2>Login</h2>
+            <h2>Iniciar sesión</h2>
         </div>
         <TextField id="userFieldL" label="Usuario" className={styles.textField} onChange={caseInsensitiveL}/>
         <br/>
@@ -214,15 +217,16 @@ export function App(){
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
     }, []);
-    return (  
+    return (
+
     <div className = "bordering">
     <div className="title_container">
-            <h1>Bookcrossing</h1>
+            <h1>BookCrossing</h1>
             <div className="session_container">
-                {currentSession!==defaultSessionText?<h4>Bienvenido,</h4>:null}
-                <h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
+                {currentSession!==defaultSessionText?<h4>Bienvenido,</h4>:null}<h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
             </div>
     </div>
+
     <Modal
         open={currentModal==='Signup'}
         onClose={openModalSignUp}>
@@ -241,10 +245,10 @@ export function App(){
     <div>
     <Router>
         <div className="nav_bar">
-            <Button id="logoutButton" onClick={()=>logout()} className={styles.button}>CERRAR SESIÓN</Button>
-            <Button id="loginButton" onClick={()=>openModalLogin()} className={styles.button}>INICIAR SESISÓN</Button>
+            <Button id="logoutButton" onClick={()=>logout()} className={styles.button}>Cerrar Sesión</Button>
+            <Button id="loginButton" onClick={()=>openModalLogin()} className={styles.button}>Iniciar Sesión</Button>
             {currentSession===defaultSessionText? <Redirect to={"/"} />:<Redirect to={"/home"}/>}
-            <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>REGISTRARSE</Button>
+            <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>Registrarse</Button>
             <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{color:"white"}}>INICIO</Link></div>
             <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>MIS LIBROS</Link></div>
         </div>
@@ -256,6 +260,38 @@ export function App(){
         </Router>
 
     </div>
+
+{currentSession===defaultSessionText?
+    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+        <div className="carousel-inner">
+            <div className="carousel-item active">
+                <img className="d-block w-100" src={car1} alt="First slide"/>
+            </div>
+
+            <div className="carousel-item">
+                <img className="d-block w-100" src={car2} alt="Second slide"/>
+            </div>
+
+            <div className="carousel-item">
+                <img className="d-block w-100" src={car3} alt="Third slide"/>
+            </div>
+        </div>
+
+        <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
+        </a>
+
+        <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
+        </a>
+
+
+    </div>:null
+}
+    
+
     </div>
     )
 }

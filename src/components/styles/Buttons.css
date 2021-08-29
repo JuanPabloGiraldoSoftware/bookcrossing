@@ -1,7 +1,13 @@
-.loginBtn{
+.loginButton{
     width: 10%;
     margin: 20px;
     display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#loginButton{
+    margin-left: auto;
     justify-content: center;
     align-content: center;
 }
