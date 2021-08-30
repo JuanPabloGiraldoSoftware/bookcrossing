@@ -9,8 +9,9 @@ import { makeStyles} from '@material-ui/core/styles';
 export function YourBooks({booksList}) {
 
     const [currentModal, setModal] = useState(false);
-
-    const openModalModify = ()=>{
+    const [currentBookId, setCurrentBookId] = useState(null);
+    const openModalModify = (bookId)=>{
+        setCurrentBookId(bookId)
         setModal(true)
     }
 
@@ -57,13 +58,57 @@ export function YourBooks({booksList}) {
            <TextField id="yearField" label="Año" className={styles.textField}/>
            <br/><br/>
            <div align='right'>
-           <Button color="primary">Actualizar</Button>
+           <Button color="primary" onClick={()=>modifyBook(currentBookId)}>Actualizar</Button>
            <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
            </div>
         </div>
     )
+    
 
     const [loading, setLoading] = useState(false)
+    
+    const modifyBook = (bookId) => {
+        const title = document.getElementById('titleField').value.length>0?
+        document.getElementById('titleField').value: null;
+        const author = document.getElementById('authorField').value.length>0?
+        document.getElementById('authorField').value:null;
+        const language = document.getElementById('languageField').value.length>0?
+        document.getElementById('languageField').value:null;
+        const gender = document.getElementById('genderField').value.length>0?
+        document.getElementById('genderField').value:null;
+        const year = document.getElementById('yearField').value.length>0?
+        document.getElementById('yearField').value:null;
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "title":title,
+            "author":author,
+            "language":language,
+            "gender":gender,
+            "year":year,
+            "bookId": bookId
+        });
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/modifyBook`;
+        var config = {
+        method: 'post',
+        url: baseUrl,
+        headers: { 
+            'Bypass-Tunnel-Reminder':true,
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+        axios(config)
+        .then(function (response) {
+            if(response){
+                closeAnyModal();
+                
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }
+
     const deleteBook = (bookId)=>{
         setLoading(true);
         setTimeout(()=>{
@@ -120,7 +165,7 @@ export function YourBooks({booksList}) {
         active={loading}
         spinner
         fadeSpeed="250"
-        text="Cargando..."><button onClick={()=>deleteBook(book.id)}>Eliminar</button><button onClick={openModalModify}>Editar</button></LoadingOverlay></div>
+        text="Cargando..."><button onClick={()=>deleteBook(book.id)}>Eliminar</button><button onClick={()=>openModalModify(book.id)}>Editar</button></LoadingOverlay></div>
                 </div>)
         }
     }
