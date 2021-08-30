@@ -2,6 +2,8 @@ import { React, useState, useEffect} from 'react';
 import {AddBooks} from './pages/AddBooks';
 import {EmptyHome} from './pages/EmptyHome';
 import { MatchView } from './pages/MatchView';
+import { faqPage } from './pages/faqPage';
+import { aboutPage } from './pages/aboutPage';
 import { PendingTrades } from './pages/PendingTrades';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
@@ -43,7 +45,8 @@ export function App(){
     const styles = useStyles();
     let defaultSessionText='¡Inicia sesión para usar la aplicación!'
     const [currentModal, setModal] = useState('none');
-    const [currentSession, setSession]= useState(defaultSessionText); 
+    const [currentSession, setSession]= useState(defaultSessionText);
+    const [VisibleBooks, setVisibleBooks]= useState(true);
 
     const openModalSignUp = ()=>{
         setModal('Signup')
@@ -214,7 +217,10 @@ export function App(){
         <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
         </div>
      </div>)
+     const hideBooks = () =>{
+       setVisibleBooks(false)
 
+     }
     
       useEffect(()=>{
         document.getElementById("logoutButton").style.visibility = "hidden"
@@ -254,21 +260,25 @@ export function App(){
             <Button id="loginButton" onClick={()=>openModalLogin()} className={styles.button}>Iniciar Sesión</Button>
             {currentSession===defaultSessionText? <Redirect to={"/"} />:<Redirect to={"/home"}/>}
             <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>Registrarse</Button>
-            <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{color:"white"}}>INICIO</Link></div>
-            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>MIS LIBROS</Link></div>
-            <div className="nav_element" id="pendingSection"><Link  to={"/pendingtrades"} style={{color:"white"}}>INTERCAMBIOS PENDIENTES</Link></div>
+            <div className="nav_element" id="faqSection"><Link  to={"/faq"} style={{textDecoration: 'none', color:"white"}} onClick={hideBooks}>PREGUNTAS FRECUENTES</Link></div>
+            <div className="nav_element" id="aboutSection"><Link  to={"/about"} style={{textDecoration: 'none', color:"white"}} onClick={hideBooks}>¿QUIENES SOMOS?</Link></div>
+            <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{textDecoration: 'none', color:"white"}}>INICIO</Link></div>
+            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{textDecoration: 'none', color:"white"}}>MIS LIBROS</Link></div>
+            <div className="nav_element" id="pendingSection"><Link  to={"/pendingtrades"} style={{textDecoration: 'none', color:"white"}}>INTERCAMBIOS PENDIENTES</Link></div>
         </div>
-            <Switch>
+            <Switch> 
             <Route exact path="/home" component={EmptyHome}/>
             <Route path="/addbooks" component={AddBooks}/>
             <Route path="/matchview" component={MatchView}/>
             <Route path="/pendingtrades" component={PendingTrades}/>
+            <Route path ="/faq" component={faqPage}/>
+            <Route path ="/about" component={aboutPage}/>  
             </Switch>
         </Router>
 
     </div>
 
-{currentSession===defaultSessionText?
+{currentSession===defaultSessionText && VisibleBooks?
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
             <div className="carousel-item active">
@@ -297,7 +307,7 @@ export function App(){
 
     </div>:null
 }
-    
+
 
     </div>
     )
