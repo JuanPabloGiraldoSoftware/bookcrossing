@@ -233,7 +233,9 @@ export function App(){
     <div className = "bordering">
     <div className="title_container">
             <h1>BookCrossing</h1>
+
             <div className="session_container">
+            <h4>Visitas: <img style={{border: "0px solid", display: "inline"}} alt="contador de visitas" src="http://www.websmultimedia.com/contador-de-visitas.php?id=302316"></img></h4>
                 {currentSession!==defaultSessionText?<h4>Bienvenido,</h4>:null}<h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
             </div>
     </div>
