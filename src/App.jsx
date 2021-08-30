@@ -5,7 +5,7 @@ import { MatchView } from './pages/MatchView';
 import { faqPage } from './pages/faqPage';
 import { aboutPage } from './pages/aboutPage';
 import { PendingTrades } from './pages/PendingTrades';
-import { LikedBooks } from './pages/LikedBooks';
+import { LikedBooks } from './pages/likedBooks';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
