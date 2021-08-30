@@ -1,11 +1,16 @@
-import {React} from 'react';
+import {React, useState} from 'react';
 import "./styles/Containers.css"
 import "./styles/Buttons.css"
 import {getCurrentUsr} from '../App';
+import LoadingOverlay from 'react-loading-overlay'
 
 export function YourBooks({booksList}) {
-    
+    const [loading, setLoading] = useState(false)
     const deleteBook = (bookId)=>{
+        setLoading(true);
+        setTimeout(()=>{
+            setLoading(false);
+        }, 5000)
         var axios = require('axios');
         var data = JSON.stringify({
         "bookId": bookId,
@@ -53,7 +58,11 @@ export function YourBooks({booksList}) {
                     <li><b>Año:</b> {book.year}</li>
                     
                 </ul>
-                <div className="select_button"><button onClick={()=>deleteBook(book.id)}>Eliminar</button><button>Editar</button></div>
+                <div className="select_button"><LoadingOverlay
+        active={loading}
+        spinner
+        fadeSpeed="250"
+        text="Cargando..."><button onClick={()=>deleteBook(book.id)}>Eliminar</button><button>Editar</button></LoadingOverlay></div>
                 </div>)
         }
     }

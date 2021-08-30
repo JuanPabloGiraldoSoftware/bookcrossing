@@ -1,10 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { BookInventory } from '../components/BookInventory'
 import { getCurrentUsr } from '../App'
+import LoadingOverlay from 'react-loading-overlay'
 
 export function PendingTrades() {
 
     const [[mUsers,mapUsers, uId], setMatch] = useState([[],[],null]);
+    const [loading, setLoading] = useState(true)
 
     const getAllMatchBooks = (userID) =>{
         var axios = require('axios');
@@ -70,11 +72,19 @@ export function PendingTrades() {
         });
     }
     useEffect(() => {
+        setTimeout(()=>{
+            setLoading(false);
+        }, 5000)
         getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
-        <div>
+        <LoadingOverlay
+        active={loading}
+        spinner
+        fadeSpeed="250"
+        text="Cargando...">
+        <div className="MainDiv">
             {mUsers.map((user)=>(
                 <Fragment>
                 <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName.toUpperCase()}`}</h3></div>
@@ -82,5 +92,6 @@ export function PendingTrades() {
                 </Fragment>
             ))}
         </div>
+        </LoadingOverlay>
     )
 }
