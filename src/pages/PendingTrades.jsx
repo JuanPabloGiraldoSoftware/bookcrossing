@@ -5,6 +5,7 @@ import { getCurrentUsr } from '../App'
 export function PendingTrades() {
 
     const [[mUsers,mapUsers, uId], setMatch] = useState([[],[],null]);
+
     const getAllMatchBooks = (userID) =>{
         var axios = require('axios');
         var data = JSON.stringify({
@@ -27,7 +28,7 @@ export function PendingTrades() {
                const mappedUsers = response.data[0];
                const matchedUsers = response.data[1];
                setMatch([matchedUsers,mappedUsers,userID])
-
+               
             }else{
                 console.log("Error!");
                 console.log(response.data)
@@ -68,7 +69,6 @@ export function PendingTrades() {
         console.log(error);
         });
     }
-
     useEffect(() => {
         getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,7 +77,7 @@ export function PendingTrades() {
         <div>
             {mUsers.map((user)=>(
                 <Fragment>
-                <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName}`}</h3></div>
+                <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName.toUpperCase()}`}</h3></div>
                 <BookInventory booksList = {[]} booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]}/>
                 </Fragment>
             ))}
