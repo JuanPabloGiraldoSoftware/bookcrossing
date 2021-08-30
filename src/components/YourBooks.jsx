@@ -3,8 +3,66 @@ import "./styles/Containers.css"
 import "./styles/Buttons.css"
 import {getCurrentUsr} from '../App';
 import LoadingOverlay from 'react-loading-overlay'
+import { Modal, TextField, Button } from '@material-ui/core';
+import { makeStyles} from '@material-ui/core/styles';
 
 export function YourBooks({booksList}) {
+
+    const [currentModal, setModal] = useState(false);
+
+    const openModalModify = ()=>{
+        setModal(true)
+    }
+
+    const closeAnyModal=()=>{
+        setModal(false)
+    }
+
+    const useStyles = makeStyles((theme)=>({
+        modal: {
+            position: 'absolute',
+            width: 400,
+            backgroundColor: 'white',
+            border: '2px solid #000',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2,4,3),
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+        },
+        textField:{
+            width:'100%',
+        },
+        button:{
+            color: "white",
+            borderRadius: "100px",
+            marginLeft: "1%"
+    
+            }
+    }))
+    const styles = useStyles();
+    const modalModify = (
+        <div className={styles.modal}>
+           <div align='center'>
+               <h2>Modificar Libro</h2>
+           </div>
+           <TextField id="titleField" label="Título" className={styles.textField}/>
+           <br/>
+           <TextField id="authorField" label="Autor" className={styles.textField}/>
+           <br/>
+           <TextField id="languageField" label="Idioma" className={styles.textField}/>
+           <br/>
+           <TextField id="genderField" label="Género Literario" className={styles.textField}/>
+           <br/> 
+           <TextField id="yearField" label="Año" className={styles.textField}/>
+           <br/><br/>
+           <div align='right'>
+           <Button color="primary">Actualizar</Button>
+           <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
+           </div>
+        </div>
+    )
+
     const [loading, setLoading] = useState(false)
     const deleteBook = (bookId)=>{
         setLoading(true);
@@ -62,12 +120,17 @@ export function YourBooks({booksList}) {
         active={loading}
         spinner
         fadeSpeed="250"
-        text="Cargando..."><button onClick={()=>deleteBook(book.id)}>Eliminar</button><button>Editar</button></LoadingOverlay></div>
+        text="Cargando..."><button onClick={()=>deleteBook(book.id)}>Eliminar</button><button onClick={openModalModify}>Editar</button></LoadingOverlay></div>
                 </div>)
         }
     }
     return (  
         <div className="row">
+            <Modal
+            open={currentModal}
+            onClose={openModalModify}>
+            {modalModify}
+            </Modal>
             {booksList.map((book)=>(
                 verifyContent(book)
             ))}
