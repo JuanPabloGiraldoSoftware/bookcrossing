@@ -104,7 +104,32 @@ export  function faqPage() {
                     </div>
                 </div>
             </div>
-            
+
+            <div className="accordion-item">
+                <h2 className="accordion-header" id="headingNine">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                        ¿Cómo puedo borrar o editar la información de un libro?
+                    </button>
+                </h2>
+                <div id="collapseNine" className="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                    <div className="accordion-body">
+                    En la misma sección de <strong>"mis libros"</strong> cuando hayas subido un libro, encontrarás la opción de eliminarlo o editar su información.
+                    </div>
+                </div>
+            </div>
+
+            <div className="accordion-item">
+                <h2 className="accordion-header" id="headingTen">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                        ¿Cómo puedo darme cuenta quién le dio "me gusta" a mis libros?
+                    </button>
+                </h2>
+                <div id="collapseTen" className="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+                    <div className="accordion-body">
+                    En la sección de <strong>"bandeja de notificaciones"</strong> encontrarás tus libros los cuales les han gustado a los demás usuarios.
+                    </div>
+                </div>
+            </div>
             
         </div>
         </div>
