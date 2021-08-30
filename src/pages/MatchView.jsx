@@ -22,7 +22,7 @@ export function MatchView() {
         fadeSpeed="250"
         text="Coincidencia Encontrada...">
         <div className="MainDiv">
-            <BookInventory booksList={[]} booksTrader={value[1]} booksOwner={value[0]}/>
+            <BookInventory booksList={[]} booksTrader={value[1]} booksOwner={value[0]} mode={'match'}/>
         </div>
         </LoadingOverlay>:<Redirect to="/"/>
     )

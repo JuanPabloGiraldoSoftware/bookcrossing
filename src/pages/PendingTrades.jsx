@@ -88,7 +88,7 @@ export function PendingTrades() {
             {mUsers.map((user)=>(
                 <Fragment>
                 <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName.toUpperCase()}`}</h3></div>
-                <BookInventory booksList = {[]} booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]}/>
+                <BookInventory booksList = {[]} booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]} mode={''}/>
                 </Fragment>
             ))}
         </div>

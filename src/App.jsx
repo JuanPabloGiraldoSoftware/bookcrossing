@@ -5,6 +5,7 @@ import { MatchView } from './pages/MatchView';
 import { faqPage } from './pages/faqPage';
 import { aboutPage } from './pages/aboutPage';
 import { PendingTrades } from './pages/PendingTrades';
+import { LikedBooks } from './pages/LikedBooks';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
@@ -94,6 +95,8 @@ export function App(){
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
                 document.getElementById("pendingSection").style.visibility = "visible"
+                document.getElementById("likeSection").style.visibility = "visible"
+
             }else{
                 setModal("FailedL")
             }
@@ -137,6 +140,7 @@ export function App(){
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
                 document.getElementById("pendingSection").style.visibility = "visible"
+                document.getElementById("likeSection").style.visibility = "visible"
             }
         })
         .catch(function (error) {
@@ -152,6 +156,8 @@ export function App(){
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
         document.getElementById("pendingSection").style.visibility = "hidden"
+        document.getElementById("likeSection").style.visibility = "hidden"
+
     }
 
     const caseInsensitiveL = ()=>{
@@ -227,6 +233,8 @@ export function App(){
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
         document.getElementById("pendingSection").style.visibility = "hidden"
+        document.getElementById("likeSection").style.visibility = "hidden"
+        
     }, []);
     return (
 
@@ -267,6 +275,7 @@ export function App(){
             <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{textDecoration: 'none', color:"white"}}>INICIO</Link></div>
             <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{textDecoration: 'none', color:"white"}}>MIS LIBROS</Link></div>
             <div className="nav_element" id="pendingSection"><Link  to={"/pendingtrades"} style={{textDecoration: 'none', color:"white"}}>INTERCAMBIOS PENDIENTES</Link></div>
+            <div className="nav_element" id="likeSection"><Link  to={"/likedBooks"} style={{textDecoration: 'none', color:"white"}}>BANDEJA DE NOTIFICACIONES</Link></div>
         </div>
             <Switch> 
             <Route exact path="/home" component={EmptyHome}/>
@@ -274,7 +283,8 @@ export function App(){
             <Route path="/matchview" component={MatchView}/>
             <Route path="/pendingtrades" component={PendingTrades}/>
             <Route path ="/faq" component={faqPage}/>
-            <Route path ="/about" component={aboutPage}/>  
+            <Route path ="/about" component={aboutPage}/> 
+            <Route path ="/likedBooks" component={LikedBooks}/>   
             </Switch>
         </Router>
 
