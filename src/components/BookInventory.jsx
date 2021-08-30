@@ -4,7 +4,7 @@ import "./styles/Buttons.css"
 import {getCurrentUsr} from '../App';
 import {LikeButton} from './LikeButton'
 
-export function BookInventory({booksList, booksTrader, booksOwner}) {
+export function BookInventory({booksList, booksTrader, booksOwner, mode}) {
     
     const [[email,cel], setContactInfo] = useState(['','']);
 
@@ -47,7 +47,7 @@ export function BookInventory({booksList, booksTrader, booksOwner}) {
         }else{
             console.log("in build function")
             const owner = book.owner?book.owner:book.userName;
-            if(getCurrentUsr()=== owner && mode!=='match'){
+            if(getCurrentUsr()=== owner && mode!=='match' && mode!=='likedBooks'){
                 return;
             }
             const buttonLike = getCurrentUsr()!== owner?<LikeButton singleBook={book}/>:null
@@ -60,6 +60,7 @@ export function BookInventory({booksList, booksTrader, booksOwner}) {
                 <li><b>Género:</b> {book.gender}</li>
                 <li><b>Año:</b> {book.year}</li>
                 <li><b>Usuario:</b> {owner}</li>
+                {mode==='likedBooks'?<li><b>Interesado:</b> {book.uNam}</li>:null}
             </ul>
             {buttonLike}
             </div>)
@@ -78,7 +79,7 @@ export function BookInventory({booksList, booksTrader, booksOwner}) {
         booksList.length>0?
         <div className="row">
             {booksList.map((book)=>(
-                verifyContent(book,'home')
+                verifyContent(book,mode)
             ))}
         </div>:<Fragment>
         <div className="contact_container"><h3>{`Correo Electrónico: ${email}, Teléfono: ${cel}`}</h3></div>

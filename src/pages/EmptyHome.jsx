@@ -43,7 +43,7 @@ export function EmptyHome() {
         text="Cargando...">
         <div className="BookInventoryShow">
 
-            <BookInventory booksList={blist} booksTrader={[]} booksOwner={[]}/>
+            <BookInventory booksList={blist} booksTrader={[]} booksOwner={[]} mode={'home'}/>
         </div>
         </LoadingOverlay>
     )
