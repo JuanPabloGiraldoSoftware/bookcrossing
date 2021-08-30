@@ -24,11 +24,22 @@
 
 .title_match_container{
     display: flex;
+    color:white;
+    margin-top:1%;
     width: 100vw;
     justify-content: center;
     border: 1px solid #000000;
-    background-color: black;
-    color: white;
+    background-color: #292775;
+}
+
+.contact_container{
+    display: flex;
+    color:white;
+    margin-bottom:1%;
+    width: 100vw;
+    justify-content: center;
+    border: 1px solid #000000;
+    background-color: #E85654;
 }
 
 .session_container{
