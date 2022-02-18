@@ -1,11 +1,45 @@
-import {React, Fragment} from 'react';
+import {React, Fragment, useEffect} from 'react';
 import "./styles/Containers.css"
 import "./styles/Buttons.css"
 import {getCurrentUsr} from '../App';
 import {LikeButton} from './LikeButton'
 
-export function BookInventory({booksList, booksTrader, booksOwner}) {
+export function BookInventory({booksList, booksTrader, booksOwner, mode}) {
     
+    //const [[email,cel], setContactInfo] = useState(['','']);
+
+    /*const getUserContactInfo = (userId)=>{
+        var axios = require('axios');
+        var data = JSON.stringify({
+        "userId": userId,
+        });
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserById` ;
+        var config = {
+        method: 'post',
+        url: baseUrl,
+        headers: { 
+            'Bypass-Tunnel-Reminder':true,
+            'Content-Type': 'application/json'
+        },
+        data : data
+        };
+
+        axios(config)
+        .then(function (response) {
+            if(response.data){
+               console.log("conatct info",response.data)              
+               //setContactInfo([response.data[0].email, response.data[0].cel])
+
+            }else{
+                console.log("Error!");
+                console.log(response.data)
+            }
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+    }*/
+
     const verifyContent = (book, mode)=>{
         console.log(book)
         if(!book.title || !book.author || !book.language || !book.gender || !book.year){
@@ -13,19 +47,20 @@ export function BookInventory({booksList, booksTrader, booksOwner}) {
         }else{
             console.log("in build function")
             const owner = book.owner?book.owner:book.userName;
-            if(getCurrentUsr()=== owner && mode!=='match'){
+            if(getCurrentUsr()=== owner && mode!=='match' && mode!=='likedBooks'){
                 return;
             }
             const buttonLike = getCurrentUsr()!== owner?<LikeButton singleBook={book}/>:null
            return (
            <div className="col-2 singlebook_container">
-            <h4 style={{color:"yellow"}}>{book.title}</h4>
+            <h4 style={{color:"#E85654"}}>{book.title}</h4>
             <ul>
                 <li><b>Autor:</b> {book.author}</li>
                 <li><b>Idioma:</b> {book.language}</li>
                 <li><b>Género:</b> {book.gender}</li>
                 <li><b>Año:</b> {book.year}</li>
                 <li><b>Usuario:</b> {owner}</li>
+                {mode==='likedBooks'?<li><b>Interesado:</b> {book.uNam}</li>:null}
             </ul>
             {buttonLike}
             </div>)
@@ -33,13 +68,21 @@ export function BookInventory({booksList, booksTrader, booksOwner}) {
     }
     console.log("owner",booksOwner)
     console.log("trader",booksTrader)
+    useEffect(()=>{
+        console.log('ownername',booksOwner);
+        //booksTrader.length>0?
+        /*getUserContactInfo(booksTrader[0].userId):
+        console.log('ok');*/
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return ( 
         booksList.length>0?
         <div className="row">
             {booksList.map((book)=>(
-                verifyContent(book,'home')
+                verifyContent(book,mode)
             ))}
         </div>:<Fragment>
+        <div className="contact_container"><h3>{`Correo Electrónico: ${booksTrader[0].email}, Teléfono: ${booksTrader[0].cel}`}</h3></div>
         <div className="title_container"><h3>{`El usuario ${booksTrader[0].userName} está interesado en tus siguientes libros:`}</h3></div>
         <div className="row">
         {booksOwner.map((book)=>(

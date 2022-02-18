@@ -1,19 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { BookInventory } from '../components/BookInventory'
 import { getCurrentUsr } from '../App'
 import LoadingOverlay from 'react-loading-overlay'
 
-export function PendingTrades() {
-
-    const [[mUsers,mapUsers, uId], setMatch] = useState([[],[],null]);
+export function LikedBooks() {
     const [loading, setLoading] = useState(true)
-
-    const getAllMatchBooks = (userID) =>{
+    const [blist, setBList] = useState([{}])
+    const getLikedBooks = (uId) =>{
         var axios = require('axios');
         var data = JSON.stringify({
-        "userId": userID,
+        "userId": uId,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallMatches` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getLikedBooks` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -26,11 +24,10 @@ export function PendingTrades() {
 
         axios(config)
         .then(function (response) {
+            console.log('res',response)
             if(response.data){
-               const mappedUsers = response.data[0];
-               const matchedUsers = response.data[1];
-               setMatch([matchedUsers,mappedUsers,userID])
-               
+                console.log('enter')
+               setBList(response.data);
             }else{
                 console.log("Error!");
                 console.log(response.data)
@@ -47,7 +44,7 @@ export function PendingTrades() {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -61,7 +58,7 @@ export function PendingTrades() {
         axios(config)
         .then(function (response) {
             if(response.data){
-               getAllMatchBooks(response.data.id)
+               getLikedBooks(response.data.id)
             }else{
                 console.log("Error!");
                 console.log(response.data)
@@ -72,10 +69,10 @@ export function PendingTrades() {
         });
     }
     useEffect(() => {
+        getUser();
         setTimeout(()=>{
             setLoading(false);
         }, 5000)
-        getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
@@ -85,12 +82,7 @@ export function PendingTrades() {
         fadeSpeed="250"
         text="Cargando...">
         <div className="MainDiv">
-            {mUsers.map((user)=>(
-                <Fragment>
-                <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName.toUpperCase()}`}</h3></div>
-                <BookInventory booksList = {[]} booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]} mode={''}/>
-                </Fragment>
-            ))}
+            <BookInventory booksList={blist} booksTrader={[]} booksOwner={[]} mode={'likedBooks'}/>
         </div>
         </LoadingOverlay>
     )

@@ -2,11 +2,17 @@ import { React, useState, useEffect} from 'react';
 import {AddBooks} from './pages/AddBooks';
 import {EmptyHome} from './pages/EmptyHome';
 import { MatchView } from './pages/MatchView';
+import { faqPage } from './pages/faqPage';
+import { aboutPage } from './pages/aboutPage';
+import { PendingTrades } from './pages/PendingTrades';
+import { LikedBooks } from './pages/likedBooks';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 import { Modal, TextField, Button } from '@material-ui/core';
 import { makeStyles} from '@material-ui/core/styles';
 import "./components/styles/Containers.css"
-
+import car1 from "./images/car_1.jpg";
+import car2 from "./images/car_2.jpg";
+import car3 from "./images/car_3.jpg";
 var currentUSR="none"
 
 export const getCurrentUsr=()=>{
@@ -38,9 +44,10 @@ const useStyles = makeStyles((theme)=>({
 
 export function App(){
     const styles = useStyles();
-    let defaultSessionText='Inicie sesión para usar la aplicación!'
+    let defaultSessionText='¡Inicia sesión para usar la aplicación!'
     const [currentModal, setModal] = useState('none');
-    const [currentSession, setSession]= useState(defaultSessionText); 
+    const [currentSession, setSession]= useState(defaultSessionText);
+    const [VisibleBooks, setVisibleBooks]= useState(true);
 
     const openModalSignUp = ()=>{
         setModal('Signup')
@@ -86,6 +93,9 @@ export function App(){
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
+                document.getElementById("pendingSection").style.visibility = "visible"
+                document.getElementById("likeSection").style.visibility = "visible"
+
             }else{
                 setModal("FailedL")
             }
@@ -144,6 +154,9 @@ export function App(){
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
+        document.getElementById("pendingSection").style.visibility = "hidden"
+        document.getElementById("likeSection").style.visibility = "hidden"
+
     }
 
     const caseInsensitiveL = ()=>{
@@ -167,7 +180,7 @@ export function App(){
     const modalSingup = (
         <div className={styles.modal}>
            <div align='center'>
-               <h2>Signup</h2>
+               <h2>Registrarse</h2>
            </div>
            <TextField id="userFieldS" label="Usuario" className={styles.textField} onChange={caseInsensitive}/>
            <br/>
@@ -198,7 +211,7 @@ export function App(){
            
         <div className={styles.modal}>
         <div align='center'>
-            <h2>Login</h2>
+            <h2>Iniciar sesión</h2>
         </div>
         <TextField id="userFieldL" label="Usuario" className={styles.textField} onChange={caseInsensitiveL}/>
         <br/>
@@ -209,22 +222,30 @@ export function App(){
         <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
         </div>
      </div>)
+     const hideBooks = () =>{
+       setVisibleBooks(false)
 
+     }
     
       useEffect(()=>{
         document.getElementById("logoutButton").style.visibility = "hidden"
         document.getElementById("addSection").style.visibility = "hidden"
         document.getElementById("homeSection").style.visibility = "hidden"
+        document.getElementById("pendingSection").style.visibility = "hidden"
+        document.getElementById("likeSection").style.visibility = "hidden"
+        
     }, []);
-    return (  
+    return (
+
     <div className = "bordering">
     <div className="title_container">
-            <h1>Bookcrossing</h1>
+            <h1>BookCrossing</h1>
+
             <div className="session_container">
-                {currentSession!==defaultSessionText?<h4>Bienvenido,</h4>:null}
-                <h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
+                {currentSession!==defaultSessionText?<h4>Bienvenido,</h4>:null}<h4>{currentSession!==defaultSessionText?currentSession.toUpperCase():currentSession}</h4>
             </div>
     </div>
+
     <Modal
         open={currentModal==='Signup'}
         onClose={openModalSignUp}>
@@ -243,21 +264,61 @@ export function App(){
     <div>
     <Router>
         <div className="nav_bar">
-            <Button id="logoutButton" onClick={()=>logout()} className={styles.button}>CERRAR SESIÓN</Button>
-            <Button id="loginButton" onClick={()=>openModalLogin()} className={styles.button}>INICIAR SESISÓN</Button>
+            <Button id="logoutButton" onClick={()=>logout()} className={styles.button}>Cerrar Sesión</Button>
+            <Button id="loginButton" onClick={()=>openModalLogin()} className={styles.button}>Iniciar Sesión</Button>
             {currentSession===defaultSessionText? <Redirect to={"/"} />:<Redirect to={"/home"}/>}
-            <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>REGISTRARSE</Button>
-            <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{color:"white"}}>INICIO</Link></div>
-            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{color:"white"}}>MIS LIBROS</Link></div>
+            <Button id="signupButton" onClick={()=>openModalSignUp()} className={styles.button}>Registrarse</Button>
+            <div className="nav_element" id="faqSection"><Link  to={"/faq"} style={{textDecoration: 'none', color:"white"}} onClick={hideBooks}>PREGUNTAS FRECUENTES</Link></div>
+            <div className="nav_element" id="aboutSection"><Link  to={"/about"} style={{textDecoration: 'none', color:"white"}} onClick={hideBooks}>¿QUIENES SOMOS?</Link></div>
+            <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{textDecoration: 'none', color:"white"}}>INICIO</Link></div>
+            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{textDecoration: 'none', color:"white"}}>MIS LIBROS</Link></div>
+            <div className="nav_element" id="pendingSection"><Link  to={"/pendingtrades"} style={{textDecoration: 'none', color:"white"}}>INTERCAMBIOS PENDIENTES</Link></div>
+            <div className="nav_element" id="likeSection"><Link  to={"/likedBooks"} style={{textDecoration: 'none', color:"white"}}>BANDEJA DE NOTIFICACIONES</Link></div>
         </div>
-            <Switch>
+            <Switch> 
             <Route exact path="/home" component={EmptyHome}/>
             <Route path="/addbooks" component={AddBooks}/>
             <Route path="/matchview" component={MatchView}/>
+            <Route path="/pendingtrades" component={PendingTrades}/>
+            <Route path ="/faq" component={faqPage}/>
+            <Route path ="/about" component={aboutPage}/> 
+            <Route path ="/likedBooks" component={LikedBooks}/>   
             </Switch>
         </Router>
 
     </div>
+
+{currentSession===defaultSessionText && VisibleBooks?
+    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+        <div className="carousel-inner">
+            <div className="carousel-item active">
+                <img className="d-block w-100" src={car1} alt="First slide"/>
+            </div>
+
+            <div className="carousel-item">
+                <img className="d-block w-100" src={car2} alt="Second slide"/>
+            </div>
+
+            <div className="carousel-item">
+                <img className="d-block w-100" src={car3} alt="Third slide"/>
+            </div>
+        </div>
+
+        <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
+        </a>
+
+        <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
+        </a>
+
+
+    </div>:null
+}
+
+
     </div>
     )
 }

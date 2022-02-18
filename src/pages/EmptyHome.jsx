@@ -41,9 +41,9 @@ export function EmptyHome() {
         spinner
         fadeSpeed="250"
         text="Cargando...">
-        <div className="MainDiv">
+        <div className="BookInventoryShow">
 
-            <BookInventory booksList={blist} booksTrader={[]} booksOwner={[]}/>
+            <BookInventory booksList={blist} booksTrader={[]} booksOwner={[]} mode={'home'}/>
         </div>
         </LoadingOverlay>
     )
