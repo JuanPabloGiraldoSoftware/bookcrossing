@@ -63,11 +63,11 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log(singleBook.singleBook)
+                console.log("singlebook",singleBook.singleBook)
                 if(op==="init"){
                     verifyLikedBook(response.data.id)
                 }else if(op==='like'){
-                    isSelected(singleBook.singleBook.id,response.data.id)
+                    isSelected(singleBook.singleBook.idBook,response.data.id)
                 }else if(op==='unlike'){
                     unlikeBook(response.data.id)
                 }
@@ -162,7 +162,7 @@ export function LikeButton(singleBook) {
         .then(function (response) {
             if(response.data){
                 sendBooks=response.data;
-                console.log(response.data);
+                console.log("from likebutton",response.data);
                 setMatch(true)
             }else{
             }

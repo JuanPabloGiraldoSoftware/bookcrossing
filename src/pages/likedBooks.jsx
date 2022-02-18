@@ -11,7 +11,7 @@ export function LikedBooks() {
         var data = JSON.stringify({
         "userId": uId,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getLikedBooks` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getLikedBooks` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -44,7 +44,7 @@ export function LikedBooks() {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -81,6 +81,7 @@ export function LikedBooks() {
         spinner
         fadeSpeed="250"
         text="Cargando...">
+        <div className="title_match_container"><h3>{"Algunos usuarios están interesados en tus libros."}</h3></div>
         <div className="MainDiv">
             <BookInventory booksList={blist} booksTrader={[]} booksOwner={[]} mode={'likedBooks'}/>
         </div>
