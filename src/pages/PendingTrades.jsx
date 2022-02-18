@@ -13,7 +13,7 @@ export function PendingTrades() {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,

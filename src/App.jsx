@@ -64,7 +64,7 @@ export function App(){
         "username": usr,
         "password": pass
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/login` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/login` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -107,7 +107,7 @@ export function App(){
         "email": email,
         "cel": cel
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/signup`;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/signup`;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -128,6 +128,8 @@ export function App(){
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
+            }else{
+                console.log(response)
             }
         })
         .catch(function (error) {

@@ -21,7 +21,7 @@ export function LikeButton(singleBook) {
             "bookId":bookId,
             "traderId": traderId
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifySelected`  ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/verifySelected`  ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -49,7 +49,7 @@ export function LikeButton(singleBook) {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -89,7 +89,7 @@ export function LikeButton(singleBook) {
             "ownerId": singleBook.singleBook.userId,
             "bookId": singleBook.singleBook.id
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/saveSelection` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -120,7 +120,7 @@ export function LikeButton(singleBook) {
             "traderId": traderId,
             "ownerId": singleBook.singleBook.userId,
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/verifyMatch` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -148,7 +148,7 @@ export function LikeButton(singleBook) {
             "booksOwner": booksOwner,
             "booksTrader": booksTrader
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getBooksById` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getBooksById` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -178,7 +178,7 @@ export function LikeButton(singleBook) {
             "userId": id,
             "bookId": singleBook.singleBook.id,
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/verifyLikedBook` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/verifyLikedBook` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -209,7 +209,7 @@ export function LikeButton(singleBook) {
             "userId": id,
             "bookId": singleBook.singleBook.id,
             });
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/unlikeBook` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/unlikeBook` ;
         var config = {
         method: 'post',
         url: baseUrl,

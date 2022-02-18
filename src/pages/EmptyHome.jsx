@@ -7,7 +7,7 @@ export function EmptyHome() {
     const [loading, setLoading] = useState(true)
     const userRequest = () => {
         var axios = require('axios');
-        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
+        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getallbooks` ;
         var config = {
         method: 'get',
         url: baseUrl,
