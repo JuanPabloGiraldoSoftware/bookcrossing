@@ -12,6 +12,28 @@
     align-content: center;
 }
 
+.confirm_button_div{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.confirm_button{
+    background-color: #292775; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .select_button{
     position: absolute;
     bottom: 0;

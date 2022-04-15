@@ -63,7 +63,7 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log("singlebook",singleBook.singleBook)
+                //console.log("singlebook",singleBook.singleBook)
                 if(op==="init"){
                     verifyLikedBook(response.data.id)
                 }else if(op==='like'){
@@ -103,7 +103,7 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log(response.data)
+                //console.log(response.data)
                 setSelected(true)
                 verifyMatch(usrId)
             }else{
@@ -133,7 +133,7 @@ export function LikeButton(singleBook) {
         axios(config)
         .then(function (response) {
             if(response.data){
-                console.log(response.data);
+                //console.log(response.data);
                 deployMatchedBooks(response.data[0], response.data[1])
             }else{
             }
@@ -162,7 +162,7 @@ export function LikeButton(singleBook) {
         .then(function (response) {
             if(response.data){
                 sendBooks=response.data;
-                console.log("from likebutton",response.data);
+                //console.log("from likebutton",response.data);
                 setMatch(true)
             }else{
             }
@@ -174,6 +174,7 @@ export function LikeButton(singleBook) {
 
     const verifyLikedBook = (id)=>{
         var axios = require('axios');
+        console.log('singleBook',singleBook)
         var data = JSON.stringify({
             "userId": id,
             "bookId": singleBook.singleBook.id,
@@ -192,9 +193,10 @@ export function LikeButton(singleBook) {
         .then(function (response) {
             console.log(response)
             if(response.data){
+                console.log(`for user ${id} entering on load`)
                 console.log("responseVerify",response.data);
                 setSelected(true)
-            }else{
+            }else{  
                 setSelected(false)
             }
         })
@@ -223,7 +225,7 @@ export function LikeButton(singleBook) {
         .then(function (response) {
             console.log(response)
             if(response.data){
-                console.log("responseVerify",response.data);
+                //console.log("responseVerify",response.data);
                 setSelected(false)
             }
         })
@@ -250,7 +252,8 @@ export function LikeButton(singleBook) {
     }
 
     useEffect(() => {
-        getUser('init')
+        getUser('init');
+        console.log(selected)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     

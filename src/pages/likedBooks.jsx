@@ -24,12 +24,12 @@ export function LikedBooks() {
 
         axios(config)
         .then(function (response) {
-            console.log('res',response)
+            //console.log('res',response)
             if(response.data){
-                console.log('enter')
+                //console.log('enter')
                setBList(response.data);
             }else{
-                console.log("Error!");
+                //console.log("Error!");
                 console.log(response.data)
             }
         })

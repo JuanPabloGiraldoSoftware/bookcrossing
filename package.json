@@ -19,6 +19,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "export REACT_APP_BACKEND_URL=localhost:4000 && react-scripts start",
+    "set_watchers": "sudo sysctl -w fs.inotify.max_user_watches=100000",
     "build": "echo $BACKEND_URL && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -138,6 +138,8 @@ export function App(){
                 document.getElementById("logoutButton").style.visibility = "visible"
                 document.getElementById("addSection").style.visibility = "visible"
                 document.getElementById("homeSection").style.visibility = "visible"
+                document.getElementById("pendingSection").style.visibility = "visible"
+                document.getElementById("likeSection").style.visibility = "visible"
             }else{
                 console.log(response)
             }

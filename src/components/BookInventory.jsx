@@ -5,13 +5,13 @@ import {getCurrentUsr} from '../App';
 import {LikeButton} from './LikeButton'
 
 export function BookInventory({booksList, booksTrader, booksOwner, mode}) {
-    mode==="likedBooks"?console.log("on likedBooksSection",booksList):console.log("");
+    //mode==="likedBooks"?console.log("on likedBooksSection",booksList):console.log("");
     const verifyContent = (book, mode)=>{
-        console.log(book)
+        //console.log(book)
         if(!book.title || !book.author || !book.language || !book.gender || !book.year){
             return
         }else{
-            console.log("in build function")
+            //console.log("in build function")
             const owner = book.owner?book.owner:book.userName;
             if(getCurrentUsr()=== owner && mode!=='match' && mode!=='likedBooks'){
                 return;
@@ -32,8 +32,8 @@ export function BookInventory({booksList, booksTrader, booksOwner, mode}) {
             </div>)
         }
     }
-    console.log("owner",booksOwner)
-    console.log("trader",booksTrader)
+    //console.log("owner",booksOwner)
+    //console.log("trader",booksTrader)
     return ( 
         booksList.length>0?
         <div className="row">
