@@ -14,7 +14,7 @@ export function MatchView() {
     useEffect(() => {
         setTimeout(()=>{
             setLoading(false);
-        }, 5000)
+        }, 1500)
     }, [])
 
     return (
@@ -25,7 +25,7 @@ export function MatchView() {
         text="Coincidencia Encontrada...">
         <div className="MainDiv">
             <BookInventory booksList={[]} booksTrader={value[1]} booksOwner={value[0]} mode={'match'}/>
-            <div className='confirm_button_div'><ConfirmTradeButton/></div>
+            <div className='confirm_button_div'><ConfirmTradeButton booksTrader={value[1]} booksOwner={value[0]}/></div>
         </div>
         </LoadingOverlay>:<Redirect to="/"/>
     )

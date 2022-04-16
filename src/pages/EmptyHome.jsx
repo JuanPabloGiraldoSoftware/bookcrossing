@@ -32,7 +32,7 @@ export function EmptyHome() {
         userRequest();
         setTimeout(()=>{
             setLoading(false);
-        }, 5000)
+        }, 1500)
     }, [])
 
     return (

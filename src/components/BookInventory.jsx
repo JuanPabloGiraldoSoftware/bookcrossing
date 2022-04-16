@@ -28,7 +28,7 @@ export function BookInventory({booksList, booksTrader, booksOwner, mode}) {
                 <li><b>Usuario:</b> {owner}</li>
                 {mode==='likedBooks'?<li><b>Interesado:</b> {book.uNam}</li>:null}
             </ul>
-            {buttonLike}
+            {mode==='match'?null:buttonLike}
             </div>)
         }
     }

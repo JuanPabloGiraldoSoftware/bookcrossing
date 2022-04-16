@@ -10,7 +10,7 @@ export function AddBooks(props){
     useEffect(() => {
         setTimeout(()=>{
             setLoading(false);
-        }, 5000)
+        }, 1500)
     }, [])
 
     return (

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { BookInventory } from '../components/BookInventory'
+import {ConfirmTradeButton} from '../components/ConfirmTradeButton';
 import { getCurrentUsr } from '../App'
 import LoadingOverlay from 'react-loading-overlay'
 
@@ -74,7 +75,7 @@ export function PendingTrades() {
     useEffect(() => {
         setTimeout(()=>{
             setLoading(false);
-        }, 5000)
+        }, 1500)
         getUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -89,6 +90,7 @@ export function PendingTrades() {
                 <Fragment>
                 <div className="title_match_container"><h3>{`Intercambio pendiente con ${mapUsers[`${uId}-->${user}`][0].userName.toUpperCase()}`}</h3></div>
                 <BookInventory booksList = {[]} booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]} mode={''}/>
+                <div className='confirm_button_div'><ConfirmTradeButton booksTrader = {mapUsers[`${uId}-->${user}`]} booksOwner = {mapUsers[`${user}-->${uId}`]}/></div>
                 </Fragment>
             ))}
         </div>

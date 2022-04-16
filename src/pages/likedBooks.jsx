@@ -72,7 +72,7 @@ export function LikedBooks() {
         getUser();
         setTimeout(()=>{
             setLoading(false);
-        }, 5000)
+        }, 1500)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
