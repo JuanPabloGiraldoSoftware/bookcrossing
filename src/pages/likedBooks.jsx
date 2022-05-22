@@ -11,7 +11,7 @@ export function LikedBooks() {
         var data = JSON.stringify({
         "userId": uId,
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getLikedBooks` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getLikedBooks` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -44,7 +44,7 @@ export function LikedBooks() {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,

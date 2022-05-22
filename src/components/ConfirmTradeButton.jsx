@@ -71,7 +71,7 @@ const confirmTrade = (idUsrT, idUsrO, idBookT, idBookO)=>{
     "idBookT" : idBookT,
     "idBookO" : idBookO
   });
-  var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/confirmTrade` ;
+  var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/confirmTrade` ;
   var config = {
   method: 'post',
   url: baseUrl,

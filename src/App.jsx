@@ -71,7 +71,7 @@ export function App(){
         "username": usr,
         "password": pass
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/login` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/login` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -117,7 +117,7 @@ export function App(){
         "email": email,
         "cel": cel
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/signup`;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/signup`;
         var config = {
         method: 'post',
         url: baseUrl,

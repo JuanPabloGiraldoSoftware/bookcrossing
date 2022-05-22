@@ -14,7 +14,7 @@ export function PendingTrades() {
         var data = JSON.stringify({
         "userId": userID,
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getallMatches` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getallMatches` ;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -48,7 +48,7 @@ export function PendingTrades() {
         var data = JSON.stringify({
         "username": username,
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/getUserId` ;
         var config = {
         method: 'post',
         url: baseUrl,

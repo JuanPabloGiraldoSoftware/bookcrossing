@@ -87,7 +87,7 @@ export function YourBooks({booksList}) {
             "year":year,
             "bookId": bookId
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/modifyBook`;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/modifyBook`;
         var config = {
         method: 'post',
         url: baseUrl,
@@ -118,7 +118,7 @@ export function YourBooks({booksList}) {
         var data = JSON.stringify({
         "bookId": bookId,
         });
-        var baseUrl = `http://${process.env.REACT_APP_BACKEND_URL}/deleteBook` ;
+        var baseUrl = `https://${process.env.REACT_APP_BACKEND_URL}/deleteBook` ;
         var config = {
         method: 'post',
         url: baseUrl,
