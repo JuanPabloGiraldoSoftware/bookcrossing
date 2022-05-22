@@ -8,6 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import {Redirect} from 'react-router-dom'
 
 export function ConfirmTradeButton({booksTrader, booksOwner}) {
   const [loading, setLoading] = useState(false)
@@ -15,6 +16,7 @@ export function ConfirmTradeButton({booksTrader, booksOwner}) {
   const [confirmResponse, setResponse] = useState('none');
   const [bookT, setBookT] = useState()
   const [bookO, setBookO] = useState()
+  const [redirectUpdate, setUpdate] = useState(false)
 
   const handleChangeT = (event) => {
     event.preventDefault();
@@ -36,6 +38,8 @@ export function ConfirmTradeButton({booksTrader, booksOwner}) {
 
   const closeAnyModal=()=>{
     setModal(false)
+    setUpdate(true)
+    setUpdate(false)
   } 
 
   const useStyles = makeStyles((theme)=>({
@@ -161,6 +165,7 @@ const modalConfirmResponse = (
         spinner
         fadeSpeed="250"
         text="Cargando...">
+          {redirectUpdate?<Redirect to='/pendingtrades'/>:null}
                 <Modal
                 open={currentModal==='response'}
                 onClose={()=>openModal('response')}>
