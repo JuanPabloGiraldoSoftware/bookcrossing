@@ -273,7 +273,7 @@ export function App(){
             <div className="nav_element" id="faqSection"><Link  to={"/faq"} style={{textDecoration: 'none', color:"white"}} onClick={hideBooks}>PREGUNTAS FRECUENTES</Link></div>
             <div className="nav_element" id="aboutSection"><Link  to={"/about"} style={{textDecoration: 'none', color:"white"}} onClick={hideBooks}>¿QUIENES SOMOS?</Link></div>
             <div className="nav_element" id="homeSection"><Link  to={"/home"} style={{textDecoration: 'none', color:"white"}}>INICIO</Link></div>
-            <div className="nav_element" id="addSection"><Link  to={"/addbooks"} style={{textDecoration: 'none', color:"white"}}>MIS LIBROS</Link></div>
+            <div className="nav_element" id="addSection"><Link  id="addingS" to={"/addbooks"} style={{textDecoration: 'none', color:"white"}}>MIS LIBROS</Link></div>
             <div className="nav_element" id="pendingSection"><Link  to={"/pendingtrades"} style={{textDecoration: 'none', color:"white"}}>INTERCAMBIOS PENDIENTES</Link></div>
             <div className="nav_element" id="likeSection"><Link  to={"/likedBooks"} style={{textDecoration: 'none', color:"white"}}>BANDEJA DE NOTIFICACIONES</Link></div>
         </div>
