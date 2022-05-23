@@ -1,0 +1,7 @@
+El principito,Antoine de SaintExupery,Español,Novela corta,1943
+El principito,Antoine de SaintExupery,Español,Novela corta,mil novecientos cuarenta y tres
+El principito,Antoine de SaintExupery,Español,Novela corta,1943
+1111,Antoine de SaintExupery,Español,Novela corta,1943
+El principito,111,Español,Novela corta,1943
+El principito,Antoine de SaintExupery,11111,Novela corta,1943
+El principito,Antoine de SaintExupery,Español,11111,1943

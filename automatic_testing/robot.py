@@ -41,31 +41,22 @@ def automatic_test_books_addition(title, author, language, gender, year):
     element_pointer.click()
     element_pointer = driver.find_element(by=By.ID, value="bookTitleField")
     element_pointer.clear()
-    if type(title) is not str:
-        return False
     element_pointer.send_keys(title)
     element_pointer = driver.find_element(by=By.ID, value="bookAuthorField")
     element_pointer.clear()
-    if type(author) is not str:
-        return False
     element_pointer.send_keys(author)
     element_pointer = driver.find_element(by=By.ID, value="bookLanguage")
     element_pointer.clear()
-    if type(language) is not str:
-        return False
     element_pointer.send_keys(language)
     element_pointer = driver.find_element(by=By.ID, value="bookGender")
     element_pointer.clear()
-    if type(gender) is not str:
-        return False
     element_pointer.send_keys(gender)
     element_pointer = driver.find_element(by=By.ID, value="bookYear")
     element_pointer.clear()
-    if type(year) is not str:
-        return False
     element_pointer.send_keys(year)
     element_pointer = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, "addBookB")))
     element_pointer.click()
+    result= driver.find_element_by_
     return True
 
 automatic_login("natalia1","natalia1*")
