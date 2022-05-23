@@ -136,7 +136,7 @@ export function AddingBar() {
             <input id="bookLanguage" type="text" placeholder="Idioma"></input>
             <input id="bookGender" type="text" placeholder="Género Literario"></input>
             <input id="bookYear" type="number" max="2099" placeholder="Año"></input>
-            <button onClick={addBook}>Agregar Libro</button>
+            <button id="addBookB"onClick={addBook}>Agregar Libro</button>
         </div>
         <YourBooks booksList={blist}/>
         </Fragment>
