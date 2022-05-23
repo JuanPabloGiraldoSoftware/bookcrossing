@@ -220,7 +220,7 @@ export function App(){
         <TextField id="passwordFieldL" label="Contraseña" className={styles.textField} type="password" onChange={caseInsensitiveL}/>
         <br/> <br/>
         <div align='right'>
-        <Button color="primary" onClick={userRequest}>Autenticar</Button>
+        <Button id="authLogin" color="primary" onClick={userRequest}>Autenticar</Button>
         <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
         </div>
      </div>)
