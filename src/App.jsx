@@ -193,7 +193,7 @@ export function App(){
            <TextField id="celField" label="Cel." className={styles.textField} type="number" onChange={caseInsensitive}/>
            <br/> <br/>
            <div align='right'>
-           <Button color="primary" onClick={signupRequest}>Registrarse</Button>
+           <Button id="regButton" color="primary" onClick={signupRequest}>Registrarse</Button>
            <Button onClick={()=>closeAnyModal()}>Cancelar</Button>
            </div>
         </div>
